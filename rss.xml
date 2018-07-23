@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iOS Astronaut's Blog 🚀]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 23 Jul 2018 20:23:30 GMT</lastBuildDate><item><title><![CDATA[Learn Rx by implementing Observable]]></title><description><![CDATA[From my perspective, there are several ways to learn new technology if you are a software developer: Read about it Play with it Hack or…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//implement-rx/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//implement-rx/</guid><pubDate>Tue, 06 Jun 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;From my perspective, there are several ways to learn new technology if you are a software developer:&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iOS Astronaut's Blog 🚀]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 23 Jul 2018 21:16:30 GMT</lastBuildDate><item><title><![CDATA[Learn Rx by implementing Observable]]></title><description><![CDATA[From my perspective, there are several ways to learn new technology if you are a software developer: Read about it Play with it Hack or…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//implement-rx/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//implement-rx/</guid><pubDate>Tue, 06 Jun 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;From my perspective, there are several ways to learn new technology if you are a software developer:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Read about it&lt;/p&gt;
@@ -228,4 +228,235 @@
 &lt;li&gt;&lt;a href=&quot;http://reactivex.io/&quot;&gt;ReactiveX website&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://store.raywenderlich.com/products/rxswift?_ga=2.15687862.1482396487.1496489051-1188417218.1476022016&quot;&gt;RxSwift book by Ray Wenderlich team&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=looJcaeboBY&quot;&gt;Math behind Rx&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[ViewModel in RxSwift world]]></title><description><![CDATA[According to the  Microsoft Docs  view model acts as an intermediary between the view and the model, and is responsible for handling the…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//view-mode-in-rx/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//view-mode-in-rx/</guid><pubDate>Sat, 11 Jun 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;According to the &lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/msp-n-p/hh848246(v%3dpandp.10)&quot;&gt;Microsoft Docs&lt;/a&gt; view model acts as an intermediary between the view and the model, and is responsible for handling the view logic. Typically, the view model interacts with the model by invoking methods in the model classes. The view model then provides data from the model in a form that the view can easily use.&lt;/p&gt;
+&lt;p&gt;Entering Rx world prepare to think about UI events, Network requests, Data base request etc. as a &lt;strong&gt;Stream&lt;/strong&gt; of values over the time.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-a8a50.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHiIRqSf//EABgQAQADAQAAAAAAAAAAAAAAAAEAEBES/9oACAEBAAEFAnI1s6Wv/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGBABAQEBAQAAAAAAAAAAAAAAAQARITH/2gAIAQEAAT8hweBY7wLkIdGfQ23/2gAMAwEAAgADAAAAEFs//8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAEDAQE/EKx//8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQIBAT8QiP/EABkQAQADAQEAAAAAAAAAAAAAAAEAEUEhMf/aAAgBAQABPxBDFIl84wlFy1OVA2EHUE8Zte+Szs//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;morpheus&quot;
+        title=&quot;&quot;
+        src=&quot;/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-f8fb9.jpeg&quot;
+        srcset=&quot;/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-e8976.jpeg 148w,
+/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-63df2.jpeg 295w,
+/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-f8fb9.jpeg 590w,
+/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-85e3d.jpeg 885w,
+/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-d1924.jpeg 1180w,
+/static/morpheus-f8e4c7b842a0c32b80d45c04d2e31e7d-a8a50.jpeg 1280w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Keeping this in mind I like to think about a &lt;strong&gt;ViewModel&lt;/strong&gt; as a &lt;a href=&quot;https://en.wikipedia.org/wiki/Black_box&quot;&gt;“Black Box”&lt;/a&gt; which accepts some UI triggers (button tap, table view selection, text editing events etc.), other dependencies (NeworkService, DataBaseService, LocationService) and applies Rx &lt;a href=&quot;http://reactivex.io/documentation/operators.html&quot;&gt;operators&lt;/a&gt; (which determines a behaviour). And after that, from the ViewModel, you can get that transformed observables and bind them back to your UI applying the behavior.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/black_box-b86ccbce44dc8bd7148289301386dff2-d3bf8.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 28.58481724461106%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAABKUlEQVQY051RO0vDUBi9MQ8jJMEHJCgh4AM6OVp06FxwcIkV1NXRDgUpDs75I4JuDlldXRwy+RMqliAdUu/NfVWuX2IFkUweOHxwzvcd7uEi1IA4jjUYWpNnGEatJ0mCGsG5OGOMn0opzjnnPaXU0o9n2/YGjA5wH4I6ruuu/b4lhLQIxgclxnsw2yUhbQQBijNVQ0pJsyxrwe56dWCa5q3neQqCPiFcWZZ1Ucm+70dVg6IoHqs7MZlQXpZCzGYCjV+Veht9B8JrWZqmu7AcBUFgQ+B9GIYyiqKx4zhC1/Vj0DzwdmDHec/zF/UH6OEOx89P01hI3PuY4qN55YV5q0XgKnAZuNK/7KPN7S3tsNs168p5fkLz/IZRekUJGTKMh+i/uB4MGj/tC/lknBHs/u5NAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;black_box&quot;
+        title=&quot;&quot;
+        src=&quot;/static/black_box-b86ccbce44dc8bd7148289301386dff2-fb8a0.png&quot;
+        srcset=&quot;/static/black_box-b86ccbce44dc8bd7148289301386dff2-1a291.png 148w,
+/static/black_box-b86ccbce44dc8bd7148289301386dff2-2bc4a.png 295w,
+/static/black_box-b86ccbce44dc8bd7148289301386dff2-fb8a0.png 590w,
+/static/black_box-b86ccbce44dc8bd7148289301386dff2-526de.png 885w,
+/static/black_box-b86ccbce44dc8bd7148289301386dff2-d3bf8.png 1067w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;As example I want to show how you could implement a list of searchable data and dislpay it in a table view with a search bar&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/heroes_list-4620fe5a4d36e40c248af46ee2c2097a-856c2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 270px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 177.77777777777777%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAkCAIAAAAGkY33AAAACXBIWXMAAAsSAAALEgHS3X78AAAD0ElEQVRIx41WW4gTVxg+L9q3PhafBR9a6ZMPKoItVIoKsnhZ10tpC1IqxqWr4A1BRBEf3EUFFbHtQ2ErDcVSd0WCtvWyWq+7XjaOuW0ymVvmltmZZJLJJJtJv5zRbdyNs/k4/Jxz5vzz/+e/fDNEVVVRFCVJ0nW9Wq1WKFzXtW07lUrFYjGe56f3Acdx6vV6MhEPh38j5XIZ50qlUuVd4JBNMeORU6lUXTdv2pKiE7y1VqtBurNQfYvWTbhVr7miUVMtj3CcIEk5UWwzJEnO5RTI2Y9yOWxKROClRqMxNTVVo6B+1LCEv6Zp6Xoe0t9phed5hYJNRsejyWSK43nDMPP5SUhNy6uqriiqLCu+ESxnDJyBR+R8b+/xvtCLccayLFmGnzIiBEut1mrtgH0y+M1nG3o/vzd61yk5mqZyHAflRmcgP4cvdh/qG4s9wQL2Gl4DafRD7dW94EGWd+2et+yHwciYoeVex+IoDBQMZGoihajMYfnjTccWbDz56z+vmjGvezCLy0zLYJDvjvT27V/9bPSKZTk8z0Gn0THI2YHuw3uXjj4ego/FYgHvw67XGchTzvoryuUM2ymjht1CoWCaJgLekfJ9Vr8yLslWmc2kOY5HtJLJJBLekdtXrw2Hdmx79O8IFr7PPqajEmSZTzGnD+0Y+v0yL4hIUJKCo8hkMv4OJOatr35jWUQBa3nbqeBNU9QOzVFT+pHDAgVTLoMDvBmDMLJ1Oy5oVllBHygQTalpGsIGDsEEUQAHtL9zJJr96U40q0wauqZqTUDZMAy/T6iyCFahh70Zg3QdvPDltr6hJwk8dClXwU+fcVqNtA/YqZ2hE5s3Df8Z4QU+kUg0i3oiDcTjcfSdr/beVH2958CBgaMjzLNmerz/y4tmywseZN6H85ct/ujGw6vgIxgsFout+m+v+h7L67q3ru/66s69+1igNgMao82dt69d83fkeqnY5DqLQtN05MkwJvPgtEmwmoHvAWQb5a4vVoW2r3n9fERRNVEQcI5ls/iMYCIIAugPkmVZ5G925MiEYkazol1xG7SY/GKmsgO3H7BWeIzj9WIixiBP2WyWYRjkCab89pg+2iZgN29eDA/2SzlmdkrnTtWtowvPLPmgmB7M8JrAc6jkdDqDqsa15+7nX/buOtjTI7wcA49YpomPph9zTAIK882dd65acenceV2VHfpZhQ44CBOfjzAJUh5Y/+nKRZ9EwpclWUbfI7dIDJxnKYKdJ/t+PBnqPzLMpGhtt4lqkOUtZ459+/26P2Ix9FGy2VIT+JUA6YA9glsK+A8h5cYa5nRHMgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;heroes_list&quot;
+        title=&quot;&quot;
+        src=&quot;/static/heroes_list-4620fe5a4d36e40c248af46ee2c2097a-856c2.png&quot;
+        srcset=&quot;/static/heroes_list-4620fe5a4d36e40c248af46ee2c2097a-5878c.png 148w,
+/static/heroes_list-4620fe5a4d36e40c248af46ee2c2097a-856c2.png 270w&quot;
+        sizes=&quot;(max-width: 270px) 100vw, 270px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Let’s imagine that all model staff implemented and all we need to do is create ViewModel and ViewController&lt;/p&gt;
+&lt;p&gt;So, let’s define the UI triggers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;search trigger (user can type to search data in the list)&lt;/li&gt;
+&lt;li&gt;scroll triggers (user can scroll to pull new data from the list)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now we can define the ViewModel interface&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HeroListViewModel&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+   
+   &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; mainTableItems&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Driver&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;HeroCellSection&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; searchTableItems&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Driver&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;HeroCellSection&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+   
+   &lt;span class=&quot;token keyword&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uiTriggers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+         searchQuery&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+         nextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+         searchNextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; 
+      api&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;HeroAPI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now let’s define transformation we want to apply to our initial triggers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;transfrom search query into request&lt;/li&gt;
+&lt;li&gt;prevent firing request for empty query&lt;/li&gt;
+&lt;li&gt;prevent fire reqest every time user type new character&lt;/li&gt;
+&lt;li&gt;cancel previous request in favor of new one&lt;/li&gt;
+&lt;li&gt;hit request every time user scrolls to the bottom edge of scroll view&lt;/li&gt;
+&lt;li&gt;append previous state (array) with new data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Implementation of transformations:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HeroListViewModel&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+   
+   &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; mainTableItems&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Driver&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;HeroCellSection&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; searchTableItems&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Driver&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;HeroCellSection&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; dismissTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Driver&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+   
+   &lt;span class=&quot;token keyword&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uiTriggers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;searchQuery&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      nextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      searchNextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      dismissTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Driver&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; api&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;HeroAPI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    
+    
+    searchTableItems &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; uiTriggers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;searchQuery
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;filter&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;isEmpty&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;//1&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;throttle&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; scheduler&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;MainScheduler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;instance&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;//2&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;flatMapLatest &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//3&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; api&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;searchItems&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;$&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                batch&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Batch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;initial&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                endPoint&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;EndPoint&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Characters&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                nextBatchTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; uiTriggers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;searchNextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 6&lt;/span&gt;
+               &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;catchError &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt;
+                  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+               &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//4&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;HeroCellData&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;//5&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;HeroCellSection&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;items&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;asDriver&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;onErrorJustReturn&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Filters empty string, remember we don’t want fire request for empty query&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Prevents to fire request every time user types new character, fire only if there is 0.3 sec pause&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Transforms search query into request and cancels previuos&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Transfroms&lt;strong&gt;Hero&lt;/strong&gt;intodummy&lt;strong&gt;HeroCellData&lt;/strong&gt;(eg. title, image url)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Transforms Array of&lt;strong&gt;HeroCellData&lt;/strong&gt;into&lt;strong&gt;HeroCellSection&lt;/strong&gt;(this needed to bind it to the UITableView)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Triggers next page request &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;And now let’s bind our transformed &lt;strong&gt;Observables&lt;/strong&gt; back to the &lt;strong&gt;UI&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;     &lt;span class=&quot;token comment&quot;&gt;//1&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; viewModel &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;HeroListViewModel&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uiTriggers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+          searchQuery&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; searchCotroller&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;searchBar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;rx_text&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;asObservable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+          nextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; tableView&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;rx_nextPageTriger&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+          searchNextPageTrigger&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; searchContentController&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tableView&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;rx_nextPageTriger
+          &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+          api&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DefaultHeroAPI&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;paramsProvider&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;HeroesParamsProvider&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;//2&lt;/span&gt;
+      viewModel&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;mainTableItems
+         &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;drive&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tableView&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;rx_itemsWithDataSource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataSource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+         &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addDisposableTo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;disposableBag&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;//3&lt;/span&gt;
+      viewModel&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;searchTableItems
+         &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;drive&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;searchContentController&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tableView&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;rx_itemsWithDataSource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;searchDataSource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+         &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addDisposableTo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;disposableBag&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;Creates the  &lt;strong&gt;ViewModel&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Binds Main table items to the &lt;code class=&quot;language-text&quot;&gt;UITableView&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Binds search items to the &lt;code class=&quot;language-text&quot;&gt;UISearchController&lt;/code&gt; tableView&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Summary&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Our view model is “pure” it’s immutable, we don’t even need a reference to it in ViewController (the&lt;strong&gt;disposeBag&lt;/strong&gt;keeps subscriptions alive)&lt;/li&gt;
+&lt;li&gt;All logic encapsulated in one place&lt;/li&gt;
+&lt;li&gt;It’s can be easily tested with &lt;a href=&quot;https://github.com/ReactiveX/RxSwift/tree/master/RxTests&quot;&gt;RxTests&lt;/a&gt; .&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Further reading&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.introtorx.com/&quot;&gt;Intro to Rx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://store.raywenderlich.com/products/rxswift&quot;&gt;RxSwift Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://reactivex.io/&quot;&gt;Rx.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/RxSwiftCommunity/RxDataSources&quot;&gt;RxDataSources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sergdort/RxMarvel&quot;&gt;Original Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Happy RxSwift coding!  🚀&lt;/strong&gt;&lt;/p&gt;</content:encoded></item></channel></rss>

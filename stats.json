@@ -17,16 +17,16 @@
       "component---src-templates-blog-post-js-65befd5c74f7b0687212.js.map"
     ],
     "path---implement-rx": [
-      "path---implement-rx-46e8c2719010da5ed3a2.js",
-      "path---implement-rx-46e8c2719010da5ed3a2.js.map"
+      "path---implement-rx-525a6b55fbc15f387ffd.js",
+      "path---implement-rx-525a6b55fbc15f387ffd.js.map"
     ],
     "component---src-layouts-index-js": [
       "component---src-layouts-index-js-df09f5d750d623bbe96c.js",
       "component---src-layouts-index-js-df09f5d750d623bbe96c.js.map"
     ],
     "path---index": [
-      "path---index-38fe09208c6c32f3f6f3.js",
-      "path---index-38fe09208c6c32f3f6f3.js.map"
+      "path---index-b34372edd0405c374f76.js",
+      "path---index-b34372edd0405c374f76.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -47,10 +47,14 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-c970031019bf45c5f227.js",
+      "app-9972881ff403eae80abd.js",
       "build-js-styles.css",
-      "app-c970031019bf45c5f227.js.map",
+      "app-9972881ff403eae80abd.js.map",
       "build-js-styles.css.map"
+    ],
+    "path---view-mode-in-rx": [
+      "path---view-mode-in-rx-8886660213fd408aee6f.js",
+      "path---view-mode-in-rx-8886660213fd408aee6f.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
