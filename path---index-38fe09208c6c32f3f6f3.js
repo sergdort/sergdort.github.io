@@ -1,0 +1,2 @@
+webpackJsonp([0x81b8806e4260],{396:function(e,t){e.exports={data:{site:{siteMetadata:{title:"iOS Astronaut's Blog 🚀"}},allMarkdownRemark:{edges:[{node:{excerpt:"From my perspective, there are several ways to learn new technology if you are a software developer: Read about it Play with it Hack or…",fields:{slug:"/implement-rx/"},frontmatter:{date:"06 June, 2017",title:"Learn Rx by implementing Observable"}}}]}},pathContext:{}}}});
+//# sourceMappingURL=path---index-38fe09208c6c32f3f6f3.js.map
