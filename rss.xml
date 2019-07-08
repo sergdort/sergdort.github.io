@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iOS Astronaut's Blog 🚀]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 08 Jul 2019 21:24:05 GMT</lastBuildDate><item><title><![CDATA[Custom @Environment keys in SwiftUI]]></title><description><![CDATA[@Environment - is a property wrapper that allows any view access to global dependencies e.g Calendar,  Locale, ColorScheme etc. But what if…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//custom-environment-swift-ui/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//custom-environment-swift-ui/</guid><pubDate>Mon, 08 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;@Environment - is a property wrapper that allows any view access to global dependencies e.g Calendar,  Locale, ColorScheme etc.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iOS Astronaut's Blog 🚀]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 08 Jul 2019 21:35:26 GMT</lastBuildDate><item><title><![CDATA[Custom @Environment keys in SwiftUI]]></title><description><![CDATA[@Environment - is a property wrapper that allows any view access to global dependencies e.g Calendar,  Locale, ColorScheme etc. But what if…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//custom-environment-swift-ui/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//custom-environment-swift-ui/</guid><pubDate>Mon, 08 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/environment-b756e3cdd240c13bce17e6ae117dc83c-22ac4.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBBAX/xAAWAQEBAQAAAAAAAAAAAAAAAAACAwT/2gAMAwEAAhADEAAAAc+wmYZwaE//xAAZEAACAwEAAAAAAAAAAAAAAAAAAgERMUL/2gAIAQEAAQUC0RoVTq7Mj//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AVf/xAAVEQEBAAAAAAAAAAAAAAAAAAAREP/aAAgBAgEBPwEZ/8QAGBAAAwEBAAAAAAAAAAAAAAAAARARADH/2gAIAQEABj8C7oWav//EABkQAQEAAwEAAAAAAAAAAAAAAAEAESExQf/aAAgBAQABPyEDLQnOn0uyArMdFOxoL//aAAwDAQACAAMAAAAQ1M//xAAVEQEBAAAAAAAAAAAAAAAAAAAAAf/aAAgBAwEBPxBT/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAx/9oACAECAQE/EHCW/8QAGxABAAMBAAMAAAAAAAAAAAAAAQARIUExYXH/2gAIAQEAAT8QUCkLL7NxA0dfUGlvl1guFiLvIvK1ajT5GBggdJ//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;environment&quot;
+        title=&quot;&quot;
+        src=&quot;/static/environment-b756e3cdd240c13bce17e6ae117dc83c-f8fb9.jpg&quot;
+        srcset=&quot;/static/environment-b756e3cdd240c13bce17e6ae117dc83c-e8976.jpg 148w,
+/static/environment-b756e3cdd240c13bce17e6ae117dc83c-63df2.jpg 295w,
+/static/environment-b756e3cdd240c13bce17e6ae117dc83c-f8fb9.jpg 590w,
+/static/environment-b756e3cdd240c13bce17e6ae117dc83c-22ac4.jpg 660w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;@Environment - is a property wrapper that allows any view access to global dependencies e.g Calendar,  Locale, ColorScheme etc.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;CalendarView&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     @&lt;span class=&quot;token function&quot;&gt;Environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;\&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;calendar&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; calendar&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Calendar&lt;/span&gt;
