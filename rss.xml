@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iOS Astronaut's Blog 🚀]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 01 Sep 2018 18:06:33 GMT</lastBuildDate><item><title><![CDATA[Power of Composition]]></title><description><![CDATA[Object Composition  is one of the most important concepts in OOP, and it’s not surprising as it’s so natural as many real-world things are…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//object-composition/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//object-composition/</guid><pubDate>Sat, 01 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[iOS Astronaut's Blog 🚀]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 08 Jul 2019 21:19:03 GMT</lastBuildDate><item><title><![CDATA[Custom @Environment Key in SwiftUI]]></title><description><![CDATA[@Environment - is a property wrapper that allows any view access to global dependencies e.g Calendar,  Locale, ColorScheme etc. But what if…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//custom-environment-swift-ui/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//custom-environment-swift-ui/</guid><pubDate>Mon, 08 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;@Environment - is a property wrapper that allows any view access to global dependencies e.g Calendar,  Locale, ColorScheme etc.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;CalendarView&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    @&lt;span class=&quot;token function&quot;&gt;Environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;\&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;calendar&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; calendar&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Calendar&lt;/span&gt;
+    
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; some &lt;span class=&quot;token builtin&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;But what if we want to create our own global dependencies that are tight to our app domain. For example, we may want &lt;code class=&quot;language-text&quot;&gt;ImageFetcher&lt;/code&gt; to be accessible for any view that can display remote images, so that images that were displayed on previous screens of our app would not need to be fetched again. &lt;/p&gt;
+&lt;p&gt;Turns out SwiftUI allows us to do this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;MovieCell&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    @&lt;span class=&quot;token function&quot;&gt;Environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;\&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;imageFetcher&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; fetcher&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ImageFetcher&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; movie&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Movie&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; poster&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;AnyPublisher&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;UIImage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Never&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; fetcher&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; movie&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;posterURL&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; some &lt;span class=&quot;token builtin&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;In order to achieve that we need to implement a couple of requirements.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;EnvironmentKey&lt;/code&gt; - requires us to provide a default value for our custom dependency.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; protocol &lt;span class=&quot;token builtin&quot;&gt;EnvironmentKey&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    associatedtype &lt;span class=&quot;token builtin&quot;&gt;Value&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; defaultValue&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;Self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;Value&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ImageFetcherKey&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;EnvironmentKey&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; defaultValue&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ImageFetcher&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ImageFetcher&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;defaultValue&lt;/code&gt; will be created when we first time access it via @Environment.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-e894a.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 42.093784078516904%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABqUlEQVQoz1WR2W4aQRBF52sSZehZumeDWcEYBphgwCzGYGEnlhzJyUsk//9JMcaJ8nBUvVTdvlVtTY5vrB5/0+x+cHP4KbyyOP5iuHikvu4xyBRV4dKvS7rjEcFgSNjLKIuUvIyJygCdBpgswE81Vj47Mtk8M1l/ZyoMvh4op3vZP/P2cs1oqHEinyKzSXoObuyhQhcvVPi5S7Lqkd4W5OuKZJliVeMt9fLElQjl9ZaommPyGcV4je1GhL4ij2xcnQgpRmKoNb6r6NgK+1MH+7Pd0hGstHlitnuh2YrDzTdx+cRkdWI035MkMYHx6YY2vTzBJAlJrMm7hiTSeJ6P7ykcx8Fx37Gq6wOD5oFydkc127f0hWK0JIoijDEopUhFNA2/EMkDvjjVOiY0Ad1I2ve8NucsbBXVhrIWgelOZndHPtlK3BFXU4IgaHEdJcVK3IorPxZCAu0JHYzcG3nkr2BWrhlM7+Uz7rmaH+g3e8LzHLMxWtxp7beJHeW0RUp1LpzXH2fvYudoBf2ttHxkdCMsHqhvT22MqgbX9XAuhY5zmdV//Dv7EP0DmNgPUsfZTcUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;defaultValue&quot;
+        title=&quot;&quot;
+        src=&quot;/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-fb8a0.png&quot;
+        srcset=&quot;/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-1a291.png 148w,
+/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-2bc4a.png 295w,
+/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-fb8a0.png 590w,
+/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-526de.png 885w,
+/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-fa2eb.png 1180w,
+/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-08f6a.png 1770w,
+/static/defaultValue-18c0050935c2bdcc2668497aa790bb26-e894a.png 1834w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;By extending &lt;code class=&quot;language-text&quot;&gt;EnvironmentValues&lt;/code&gt; we provide a property that we are going to use to access it via @Environment property wrapper.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;EnvironmentValues&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; imageFetcher&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;ImageFetcher&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;ImageFetcherKey&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;ImageFetcherKey&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; newValue
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Complete implemetation can be found &lt;a href=&quot;https://github.com/sergdort/CombineFeedback/blob/master/Example/Views/AsyncImage.swift&quot;&gt;here&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Power of Composition]]></title><description><![CDATA[Object Composition  is one of the most important concepts in OOP, and it’s not surprising as it’s so natural as many real-world things are…]]></description><link>https://gatsbyjs.github.io/gatsby-starter-blog//object-composition/</link><guid isPermaLink="false">https://gatsbyjs.github.io/gatsby-starter-blog//object-composition/</guid><pubDate>Sat, 01 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
     href=&quot;/static/space_station-d6b78f2106cc8cd9d5676d243516a66b-cd901.jpg&quot;

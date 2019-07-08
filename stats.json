@@ -1,12 +1,16 @@
 {
   "assetsByChunkName": {
+    "path---custom-environment-swift-ui": [
+      "path---custom-environment-swift-ui-dd3b4c2ec056c0d91e35.js",
+      "path---custom-environment-swift-ui-dd3b4c2ec056c0d91e35.js.map"
+    ],
     "component---src-pages-index-js": [
       "component---src-pages-index-js-a1f08b4c32539615c47b.js",
       "component---src-pages-index-js-a1f08b4c32539615c47b.js.map"
     ],
     "path---object-composition": [
-      "path---object-composition-6b4ead45d2ce09d54ef1.js",
-      "path---object-composition-6b4ead45d2ce09d54ef1.js.map"
+      "path---object-composition-efa785aa80e82521fe2c.js",
+      "path---object-composition-efa785aa80e82521fe2c.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
@@ -33,8 +37,8 @@
       "component---src-layouts-index-js-98c79bfcb1bc40eb5461.js.map"
     ],
     "path---index": [
-      "path---index-41b309a84b81bf37f4ce.js",
-      "path---index-41b309a84b81bf37f4ce.js.map"
+      "path---index-f1a10a63dce62f916e4f.js",
+      "path---index-f1a10a63dce62f916e4f.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -55,9 +59,9 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-74d8abf2fe0a912bc22e.js",
+      "app-4008982552c4a86ad81d.js",
       "build-js-styles.css",
-      "app-74d8abf2fe0a912bc22e.js.map",
+      "app-4008982552c4a86ad81d.js.map",
       "build-js-styles.css.map"
     ],
     "path---view-mode-in-rx": [
