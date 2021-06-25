@@ -1,8 +1,8 @@
 {
   "assetsByChunkName": {
     "path---custom-environment-swift-ui": [
-      "path---custom-environment-swift-ui-63629ae4856e4d7c374e.js",
-      "path---custom-environment-swift-ui-63629ae4856e4d7c374e.js.map"
+      "path---custom-environment-swift-ui-d38eded0d1bf17869a52.js",
+      "path---custom-environment-swift-ui-d38eded0d1bf17869a52.js.map"
     ],
     "component---src-pages-index-js": [
       "component---src-pages-index-js-a1f08b4c32539615c47b.js",
@@ -37,8 +37,8 @@
       "component---src-layouts-index-js-98c79bfcb1bc40eb5461.js.map"
     ],
     "path---index": [
-      "path---index-70dc45e646b2a45789c7.js",
-      "path---index-70dc45e646b2a45789c7.js.map"
+      "path---index-91d76d5e245637b3f539.js",
+      "path---index-91d76d5e245637b3f539.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -58,10 +58,14 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---collection-view-insert-in-front": [
+      "path---collection-view-insert-in-front-8851dc6cd9402039fad6.js",
+      "path---collection-view-insert-in-front-8851dc6cd9402039fad6.js.map"
+    ],
     "app": [
-      "app-4008982552c4a86ad81d.js",
+      "app-7134b7f4c9f389130797.js",
       "build-js-styles.css",
-      "app-4008982552c4a86ad81d.js.map",
+      "app-7134b7f4c9f389130797.js.map",
       "build-js-styles.css.map"
     ],
     "path---view-mode-in-rx": [
