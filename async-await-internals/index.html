@@ -1,0 +1,485 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.15.0"/><meta name="theme-color" content="#663399"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" data-gatsby-head="true"/><meta name="description" content="When you write  code, it feels magical—asynchronous operations look like synchronous code, yet your program doesn’t block. But what’s actually happening under…" data-gatsby-head="true"/><meta property="og:title" content="Deep Dive: How Async/Await Works Under the Hood in Swift | Journey before destination, tests before production" data-gatsby-head="true"/><meta property="og:description" content="When you write  code, it feels magical—asynchronous operations look like synchronous code, yet your program doesn’t block. But what’s actually happening under…" data-gatsby-head="true"/><meta property="og:type" content="website" data-gatsby-head="true"/><meta name="twitter:card" content="summary" data-gatsby-head="true"/><meta name="twitter:creator" content="Serg Dort" data-gatsby-head="true"/><meta name="twitter:title" content="Deep Dive: How Async/Await Works Under the Hood in Swift | Journey before destination, tests before production" data-gatsby-head="true"/><meta name="twitter:description" content="When you write  code, it feels magical—asynchronous operations look like synchronous code, yet your program doesn’t block. But what’s actually happening under…" data-gatsby-head="true"/><style data-href="/styles.953cc786368e91057aee.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#f8f8f2;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 1px rgba(0,0,0,.3);white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}*{box-sizing:border-box}body,html{margin:0;overflow-x:hidden;padding:0;width:100%}@media (max-width:768px){body{font-size:16px}main img{height:auto;max-width:100%}pre[class*=language-]{border-radius:0;margin-left:-1rem;margin-right:-1rem;max-width:100%;overflow-x:auto;padding-left:1rem!important;padding-right:1rem!important}code{word-wrap:break-word;overflow-wrap:break-word}table{display:block;overflow-x:auto;white-space:nowrap}h1{word-wrap:break-word;font-size:1.8rem;line-height:1.2}h2{font-size:1.5rem}h2,h3{word-wrap:break-word;line-height:1.3}h3{font-size:1.3rem}}@media (max-width:480px){body{font-size:15px}h1{font-size:1.6rem}h2{font-size:1.4rem}h3{font-size:1.2rem}}img{height:auto}iframe,img{max-width:100%}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><link rel="alternate" type="application/rss+xml" title="Serg Dort&#x27;s Blog RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=87842467b72dd90d1ebdb463dad971b8" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=87842467b72dd90d1ebdb463dad971b8"/><style>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><title data-gatsby-head="true">Deep Dive: How Async/Await Works Under the Hood in Swift | Journey before destination, tests before production | Journey before destination, tests before production</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:52.5rem;padding:2.625rem max(1.3125rem, min(5vw, 1.75rem));width:100%;box-sizing:border-box"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/">Journey before destination, tests before production</a></h3></header><main><article itemscope="" itemType="http://schema.org/Article"><header><h1 style="margin-top:1.75rem;margin-bottom:0" itemProp="headline">Deep Dive: How Async/Await Works Under the Hood in Swift</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:0.875rem">January 17, 2026</p><div style="margin-bottom:1.75rem"><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/async/">async</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/concurrency/">concurrency</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/swift/">Swift</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/programming-languages/">programming-languages</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/internals/">internals</a></div></header><section itemProp="articleBody"><p>When you write <code class="language-text">async/await</code> code, it feels magical—asynchronous operations look like synchronous code, yet your program doesn’t block. But what’s actually happening under the hood? How does Swift transform your sequential-looking code into non-blocking, resumable operations?</p>
+<p>In this deep dive, we’ll explore the internal mechanisms that make async/await work in Swift. We’ll examine state machines, continuations, async frames, and executor management to understand how the language achieves efficient asynchronous programming.</p>
+<h2>The Core Problem</h2>
+<p>Before async/await, asynchronous programming meant callbacks, manual state tracking, and complex control flow:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// The old way - callback hell</span>
+<span class="token keyword">func</span> <span class="token function-definition function">fetchUserData</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> completion<span class="token punctuation">:</span> <span class="token attribute atrule">@escaping</span> <span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">fetchFromDatabase</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> userId<span class="token punctuation">)</span> <span class="token punctuation">{</span> userData <span class="token keyword">in</span>
+        <span class="token function">fetchUserPreferences</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> userId<span class="token punctuation">)</span> <span class="token punctuation">{</span> preferences <span class="token keyword">in</span>
+            <span class="token function">fetchUserPosts</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> userId<span class="token punctuation">)</span> <span class="token punctuation">{</span> posts <span class="token keyword">in</span>
+                <span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token class-name">User</span><span class="token punctuation">(</span>userData<span class="token punctuation">:</span> userData<span class="token punctuation">,</span> preferences<span class="token punctuation">:</span> preferences<span class="token punctuation">,</span> posts<span class="token punctuation">:</span> posts<span class="token punctuation">)</span>
+                <span class="token function">completion</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>With async/await, this becomes:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// The modern way</span>
+<span class="token keyword">func</span> <span class="token function-definition function">fetchUserData</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> userData <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchFromDatabase</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> userId<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> preferences <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchUserPreferences</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> userId<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> posts <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchUserPosts</span><span class="token punctuation">(</span>userId<span class="token punctuation">:</span> userId<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token class-name">User</span><span class="token punctuation">(</span>userData<span class="token punctuation">:</span> userData<span class="token punctuation">,</span> preferences<span class="token punctuation">:</span> preferences<span class="token punctuation">,</span> posts<span class="token punctuation">:</span> posts<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The challenge: how do we make this sequential-looking code actually suspend, free up the thread, and resume later without blocking?</p>
+<h2>The State Machine Transformation</h2>
+<p>Swift solves this problem by transforming your async function into a <strong>state machine</strong> at compile time. Each <code class="language-text">await</code> point becomes a distinct state.</p>
+<h3>Swift’s Async Frame Approach</h3>
+<p>When you write an async function, Swift allocates an <strong>async frame</strong> that persists across suspension points.</p>
+<p>Here’s what you write:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> processed <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> processed
+<span class="token punctuation">}</span></code></pre></div>
+<p>Swift allocates an async frame that conceptually looks like:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌────────────────────────┐
+│   Async Frame          │
+├────────────────────────┤
+│ Parent frame pointer   │
+│ Resume function ptr    │
+│ Resume point (state)   │
+│ Executor reference     │
+│ Local: result          │
+│ Local: processed       │
+└────────────────────────┘</code></pre></div>
+<p>Unlike regular stack frames (which are destroyed when a function returns), async frames are heap-allocated and persist across suspension points. They form a linked chain through parent pointers, similar to a call stack but with the crucial difference that they can survive when the function suspends.</p>
+<h3>How the State Machine Works</h3>
+<p>The compiler transforms your async function into something conceptually like this:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// Conceptual transformation (simplified)</span>
+<span class="token keyword">struct</span> <span class="token class-name">GetDataAsyncFrame</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Current state in the state machine</span>
+    <span class="token keyword">var</span> state<span class="token punctuation">:</span> <span class="token class-name">Int</span>
+
+    <span class="token comment">// Local variables that survive across await</span>
+    <span class="token keyword">var</span> result<span class="token punctuation">:</span> <span class="token class-name">Data</span><span class="token operator">?</span>
+    <span class="token keyword">var</span> processed<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token operator">?</span>
+
+    <span class="token comment">// Parent frame pointer</span>
+    <span class="token keyword">var</span> parentFrame<span class="token punctuation">:</span> <span class="token class-name">UnsafePointer</span><span class="token operator">&lt;</span><span class="token class-name">AsyncFrame</span><span class="token operator">>?</span>
+
+    <span class="token comment">// Resume function</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">resume</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> state <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token comment">// Initial state - start fetch()</span>
+            state <span class="token operator">=</span> <span class="token number">1</span>
+            <span class="token comment">// Suspend and wait for fetch() to complete</span>
+            <span class="token keyword">return</span>
+
+        <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token comment">// Resumed after fetch() completed</span>
+            result <span class="token operator">=</span> <span class="token function">getAwaitResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            processed <span class="token operator">=</span> <span class="token function">process</span><span class="token punctuation">(</span>result<span class="token operator">!</span><span class="token punctuation">)</span>
+            state <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token comment">// Mark as completed</span>
+            <span class="token function">completeAsync</span><span class="token punctuation">(</span>result<span class="token punctuation">:</span> processed<span class="token operator">!</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The key insight: <strong>all local variables that need to survive across <code class="language-text">await</code> points are stored in the async frame</strong>. This moves them from the stack to the heap, ensuring they persist when the method yields control.</p>
+<p>When you <code class="language-text">await</code>, the method doesn’t actually wait—it:</p>
+<ol>
+<li>Saves the current state</li>
+<li>Registers a continuation (the resume function)</li>
+<li>Returns control to the caller</li>
+<li>Later, when the awaited operation completes, the resume function is called</li>
+</ol>
+<h2>Understanding Continuations</h2>
+<p>Continuations are the <strong>core mechanism</strong> that makes resumption work. A continuation is essentially “the rest of the computation”—it packages up everything needed to resume execution later.</p>
+<h3>What’s in a Continuation?</h3>
+<p>Think of a continuation as a bookmark that contains:</p>
+<ul>
+<li><strong>Where to resume</strong>: The specific point in the code to continue from</li>
+<li><strong>What state to restore</strong>: The local variables and context</li>
+<li><strong>Where to run</strong>: Which executor/scheduler to use when resuming</li>
+</ul>
+<p>In Swift, a continuation conceptually looks like:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">struct</span> <span class="token class-name">UnsafeContinuation</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment">// Pointer to the async frame to resume</span>
+    <span class="token keyword">var</span> asyncFrame<span class="token punctuation">:</span> <span class="token class-name">UnsafePointer</span><span class="token operator">&lt;</span><span class="token class-name">AsyncFrame</span><span class="token operator">></span>
+
+    <span class="token comment">// The function to call to resume execution</span>
+    <span class="token keyword">var</span> resumeFunction<span class="token punctuation">:</span> <span class="token attribute atrule">@convention</span><span class="token punctuation">(</span>thin<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token class-name">UnsafePointer</span><span class="token operator">&lt;</span><span class="token class-name">AsyncFrame</span><span class="token operator">></span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">Void</span>
+
+    <span class="token comment">// Which executor to resume on</span>
+    <span class="token keyword">var</span> targetExecutor<span class="token punctuation">:</span> <span class="token class-name">UnownedSerialExecutor</span>
+
+    <span class="token comment">// Priority and other metadata</span>
+    <span class="token keyword">var</span> priority<span class="token punctuation">:</span> <span class="token class-name">TaskPriority</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3>Creating a Continuation</h3>
+<p>Let’s trace what happens when you <code class="language-text">await</code>:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">fetchUser</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">networkRequest</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token comment">// ← Suspension point</span>
+    <span class="token keyword">return</span> <span class="token class-name">User</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>At the <code class="language-text">await networkRequest(id)</code> line:</p>
+<ol>
+<li>
+<p><strong>The compiler generates code to create a continuation:</strong></p>
+<ul>
+<li>Captures the current async frame</li>
+<li>Sets the resume point (state 1 in our example)</li>
+<li>Captures the current executor</li>
+</ul>
+</li>
+<li>
+<p><strong>The async frame is updated:</strong></p>
+<ul>
+<li>Resume point set to 1</li>
+<li>Current state saved</li>
+<li>Live variables preserved</li>
+</ul>
+</li>
+<li>
+<p><strong>Control returns to the runtime scheduler:</strong></p>
+<ul>
+<li>The current thread is freed up</li>
+<li>Other work can execute</li>
+</ul>
+</li>
+</ol>
+<h3>Resuming a Continuation</h3>
+<p>When the async operation completes, someone calls <code class="language-text">continuation.resume()</code>. Here’s what happens internally:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">resume</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span>continuation<span class="token punctuation">:</span> <span class="token class-name">UnsafeContinuation</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> with value<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 1. Get the async frame</span>
+    <span class="token keyword">let</span> frame <span class="token operator">=</span> continuation<span class="token punctuation">.</span>asyncFrame
+
+    <span class="token comment">// 2. Store the result value in the frame</span>
+    <span class="token function">storeResult</span><span class="token punctuation">(</span><span class="token keyword">in</span><span class="token punctuation">:</span> frame<span class="token punctuation">,</span> value<span class="token punctuation">:</span> value<span class="token punctuation">)</span>
+
+    <span class="token comment">// 3. Check if we need to switch executors</span>
+    <span class="token keyword">let</span> targetExecutor <span class="token operator">=</span> continuation<span class="token punctuation">.</span>targetExecutor
+    <span class="token keyword">let</span> currentExecutor <span class="token operator">=</span> <span class="token function">getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> currentExecutor <span class="token operator">==</span> targetExecutor <span class="token punctuation">{</span>
+        <span class="token comment">// Already on correct executor - resume directly</span>
+        continuation<span class="token punctuation">.</span><span class="token function">resumeFunction</span><span class="token punctuation">(</span>frame<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Need to hop to the target executor</span>
+        targetExecutor<span class="token punctuation">.</span>enqueue <span class="token punctuation">{</span>
+            continuation<span class="token punctuation">.</span><span class="token function">resumeFunction</span><span class="token punctuation">(</span>frame<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The resume function jumps back into the async function at the right state:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">resumeFetchUser</span><span class="token punctuation">(</span>frame<span class="token punctuation">:</span> <span class="token class-name">UnsafePointer</span><span class="token operator">&lt;</span><span class="token class-name">AsyncFrame</span><span class="token operator">></span><span class="token punctuation">,</span> data<span class="token punctuation">:</span> <span class="token class-name">Data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Restore local state from frame</span>
+    <span class="token keyword">let</span> locals <span class="token operator">=</span> <span class="token function">loadLocals</span><span class="token punctuation">(</span>from<span class="token punctuation">:</span> frame<span class="token punctuation">)</span>
+
+    <span class="token comment">// Jump to the right state</span>
+    <span class="token keyword">switch</span> locals<span class="token punctuation">.</span>resumePoint <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token comment">// Resume after networkRequest</span>
+        <span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token class-name">User</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> data<span class="token punctuation">)</span>
+        <span class="token function">completeAsync</span><span class="token punctuation">(</span>frame<span class="token punctuation">,</span> result<span class="token punctuation">:</span> user<span class="token punctuation">)</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        <span class="token function">fatalError</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3>Manual Continuation API</h3>
+<p>Swift exposes continuations through APIs that let you bridge callback-based code to async/await:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">legacyAsyncOperation</span><span class="token punctuation">(</span>completion<span class="token punctuation">:</span> <span class="token attribute atrule">@escaping</span> <span class="token punctuation">(</span><span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Old-style callback API</span>
+    <span class="token class-name">DispatchQueue</span><span class="token punctuation">.</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asyncAfter</span><span class="token punctuation">(</span>deadline<span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">completion</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Done!"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Bridge to async/await using continuation:</span>
+<span class="token keyword">func</span> <span class="token function-definition function">modernAsyncOperation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token keyword">throws</span> <span class="token operator">-></span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">try</span> <span class="token keyword">await</span> withCheckedThrowingContinuation <span class="token punctuation">{</span> continuation <span class="token keyword">in</span>
+        legacyAsyncOperation <span class="token punctuation">{</span> result <span class="token keyword">in</span>
+            <span class="token comment">// Resume the continuation with the result</span>
+            continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>with<span class="token punctuation">:</span> result<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The <code class="language-text">withCheckedThrowingContinuation</code> function:</p>
+<ol>
+<li>Creates a continuation for the current suspension point</li>
+<li>Passes it to your closure</li>
+<li>Suspends the async function</li>
+<li>Your closure stores the continuation and starts the async operation</li>
+<li>When the callback fires, you resume the continuation</li>
+<li>The async function continues execution</li>
+</ol>
+<h3>Continuation Safety</h3>
+<p>Continuations must be resumed exactly once. Swift provides both checked and unsafe versions:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// Checked - runtime verifies you resume exactly once</span>
+withCheckedContinuation <span class="token punctuation">{</span> continuation <span class="token keyword">in</span>
+    continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>returning<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">)</span>
+    <span class="token comment">// continuation.resume(returning: 43) // ← Runtime error!</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Unsafe - no checking, better performance</span>
+withUnsafeContinuation <span class="token punctuation">{</span> continuation <span class="token keyword">in</span>
+    continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>returning<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">)</span>
+    <span class="token comment">// Resuming twice = undefined behavior!</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Resuming twice leads to crashes and memory corruption. Never resuming causes the async function to hang forever and leak memory. The checked version protects you from these errors at the cost of some runtime overhead.</p>
+<h2>Executor Management and Context Switching</h2>
+<p>One of the most elegant aspects of Swift’s async/await is how it manages execution context—ensuring that code runs on the correct executor (thread pool, main queue, actor’s serial queue, etc.).</p>
+<h3>How Executors Are Tracked</h3>
+<p>The key is <strong>task-local storage</strong>. Each Task carries metadata including the current executor:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">struct</span> <span class="token class-name">Task</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> id<span class="token punctuation">:</span> <span class="token class-name">TaskID</span>
+    <span class="token keyword">var</span> priority<span class="token punctuation">:</span> <span class="token class-name">TaskPriority</span>
+    <span class="token keyword">var</span> asyncFrameChain<span class="token punctuation">:</span> <span class="token class-name">UnsafePointer</span><span class="token operator">&lt;</span><span class="token class-name">AsyncFrame</span><span class="token operator">></span>
+
+    <span class="token comment">// Current executor stored per-task</span>
+    <span class="token keyword">var</span> currentExecutor<span class="token punctuation">:</span> <span class="token class-name">UnownedSerialExecutor</span>
+
+    <span class="token keyword">var</span> parentTask<span class="token punctuation">:</span> <span class="token class-name">Task</span><span class="token operator">?</span>
+    <span class="token comment">// ... other metadata</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>When you call <code class="language-text">getCurrentExecutor()</code>, it essentially does:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">swift_task_getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">UnownedSerialExecutor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> currentTask <span class="token operator">=</span> <span class="token function">swift_task_getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// Get current Task</span>
+    <span class="token keyword">return</span> currentTask<span class="token punctuation">.</span>currentExecutor  <span class="token comment">// Return stored executor</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3>How the Current Task is Tracked</h3>
+<p>The runtime maintains a pointer to the current task in each OS thread using thread-local storage:</p>
+<div class="gatsby-highlight" data-language="c"><pre class="language-c"><code class="language-c"><span class="token comment">// In each OS thread's thread-local storage</span>
+__thread Task<span class="token operator">*</span> _currentTask <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+
+<span class="token comment">// Getting current task</span>
+Task<span class="token operator">*</span> <span class="token function">swift_task_getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> _currentTask<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>So the complete chain is:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">OS Thread
+   │
+   └─> _currentTask (thread-local pointer)
+          │
+          └─> Task object (heap allocated)
+                 │
+                 └─> currentExecutor field</code></pre></div>
+<p>This indirection is crucial: it allows tasks to migrate between threads while maintaining their execution context.</p>
+<h3>Executor Switching with Actors</h3>
+<p>Actors in Swift guarantee that their methods run serially on their own executor. Here’s how that works with continuations:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">actor</span> <span class="token class-name">DatabaseActor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> state<span class="token punctuation">:</span> <span class="token class-name">Int</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">func</span> <span class="token function-definition function">save</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> <span class="token class-name">Data</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Runs on DatabaseActor's executor</span>
+        <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">networkRequest</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token comment">// Automatically back on DatabaseActor's executor!</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>state <span class="token operator">+=</span> <span class="token number">1</span>  <span class="token comment">// Safe - isolated to actor</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>The flow:</strong></p>
+<ol>
+<li>
+<p><strong>Before <code class="language-text">await networkRequest()</code>:</strong></p>
+<ul>
+<li>Currently on DatabaseActor’s executor</li>
+<li><code class="language-text">Task.currentExecutor = DatabaseActor.executor</code></li>
+<li>Continuation captures this executor as <code class="language-text">targetExecutor</code></li>
+</ul>
+</li>
+<li>
+<p><strong><code class="language-text">networkRequest()</code> executes:</strong></p>
+<ul>
+<li>May run on a completely different executor</li>
+<li>Might complete on a background thread</li>
+</ul>
+</li>
+<li>
+<p><strong>When <code class="language-text">networkRequest()</code> completes:</strong></p>
+<ul>
+<li>Calls <code class="language-text">continuation.resume(returning: result)</code></li>
+<li>Runtime checks: am I on the target executor?</li>
+<li>If not, enqueues the resume operation on DatabaseActor’s executor</li>
+</ul>
+</li>
+<li>
+<p><strong>Resume executes:</strong></p>
+<ul>
+<li>Now back on DatabaseActor’s executor</li>
+<li><code class="language-text">Task.currentExecutor</code> is updated</li>
+<li>Actor isolation is restored</li>
+<li>Safe to access <code class="language-text">self.state</code></li>
+</ul>
+</li>
+</ol>
+<h3>Setting the Executor</h3>
+<p>The executor is set or changed at specific points:</p>
+<p><strong>1. Task Creation:</strong></p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// Inherits current executor</span>
+<span class="token class-name">Task</span> <span class="token punctuation">{</span>
+    <span class="token comment">// currentExecutor = parent's executor</span>
+    <span class="token keyword">await</span> <span class="token function">doWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Gets new executor from thread pool</span>
+<span class="token class-name">Task</span><span class="token punctuation">.</span>detached <span class="token punctuation">{</span>
+    <span class="token comment">// currentExecutor = cooperative thread pool executor</span>
+    <span class="token keyword">await</span> <span class="token function">doWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Explicitly on main executor</span>
+<span class="token class-name">Task</span> <span class="token punctuation">{</span> <span class="token attribute atrule">@MainActor</span> <span class="token keyword">in</span>
+    <span class="token comment">// currentExecutor = MainActor's executor (main queue)</span>
+    <span class="token keyword">await</span> <span class="token function">updateUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>2. Entering Actor-Isolated Context:</strong></p>
+<p>When you call an actor method, the runtime switches executors:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">let</span> <span class="token keyword">actor</span> <span class="token operator">=</span> <span class="token class-name">MyActor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> <span class="token keyword">actor</span><span class="token punctuation">.</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// ← Executor switch happens here</span></code></pre></div>
+<p>Internally:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">callActorMethod</span><span class="token punctuation">(</span><span class="token keyword">actor</span><span class="token punctuation">:</span> <span class="token class-name">MyActor</span><span class="token punctuation">,</span> method<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> currentTask <span class="token operator">=</span> <span class="token function">swift_task_getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment">// Switch to actor's executor</span>
+    currentTask<span class="token punctuation">.</span>currentExecutor <span class="token operator">=</span> <span class="token keyword">actor</span><span class="token punctuation">.</span>unownedExecutor
+
+    <span class="token comment">// Enqueue the method call on actor's executor</span>
+    <span class="token keyword">actor</span><span class="token punctuation">.</span>unownedExecutor<span class="token punctuation">.</span>enqueue <span class="token punctuation">{</span>
+        <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// Execute on actor's executor</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>3. Resuming from Continuation:</strong></p>
+<p>When a continuation resumes, it restores the executor:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">resume</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span>continuation<span class="token punctuation">:</span> <span class="token class-name">Continuation</span><span class="token operator">&lt;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span> with value<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> targetExecutor <span class="token operator">=</span> continuation<span class="token punctuation">.</span>targetExecutor
+
+    targetExecutor<span class="token punctuation">.</span>enqueue <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> currentTask <span class="token operator">=</span> <span class="token function">swift_task_getCurrent</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        currentTask<span class="token punctuation">.</span>currentExecutor <span class="token operator">=</span> targetExecutor  <span class="token comment">// ← Restored here!</span>
+        continuation<span class="token punctuation">.</span><span class="token function">resumeFunction</span><span class="token punctuation">(</span>continuation<span class="token punctuation">.</span>frame<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3>Complete Example: Tracing Executor Changes</h3>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">actor</span> <span class="token class-name">DatabaseActor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"A: </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation"><span class="token function">getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>  <span class="token comment">// DatabaseActor's executor</span>
+
+        <span class="token keyword">await</span> <span class="token class-name">Task</span> <span class="token punctuation">{</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"B: </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation"><span class="token function">getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>  <span class="token comment">// Inherited from parent</span>
+        <span class="token punctuation">}</span><span class="token punctuation">.</span>value
+
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"C: </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation"><span class="token function">getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>  <span class="token comment">// DatabaseActor's executor</span>
+
+        <span class="token keyword">await</span> <span class="token class-name">Task</span><span class="token punctuation">.</span>detached <span class="token punctuation">{</span>
+            <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"D: </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation"><span class="token function">getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>  <span class="token comment">// New executor</span>
+        <span class="token punctuation">}</span><span class="token punctuation">.</span>value
+
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"E: </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation"><span class="token function">getCurrentExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>  <span class="token comment">// DatabaseActor's executor</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><strong>What prints:</strong></p>
+<ul>
+<li><strong>A:</strong> DatabaseActor’s executor (we’re in an actor method)</li>
+<li><strong>B:</strong> DatabaseActor’s executor (child Task inherits parent’s executor)</li>
+<li><strong>C:</strong> DatabaseActor’s executor (continuation restored it after await)</li>
+<li><strong>D:</strong> DefaultExecutor (detached task gets new executor)</li>
+<li><strong>E:</strong> DatabaseActor’s executor (continuation restored it again)</li>
+</ul>
+<h2>Performance Optimizations</h2>
+<p>Swift has optimizations to avoid unnecessary overhead:</p>
+<h3>Inline Frames</h3>
+<p>Swift can optimize away frame allocation for simple cases:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">simple</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">42</span>  <span class="token comment">// No suspension - might not allocate frame</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function-definition function">alsoSimple</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">simple</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// Might inline simple's "frame"</span>
+    <span class="token keyword">return</span> x
+<span class="token punctuation">}</span></code></pre></div>
+<p>If the compiler can prove an async function won’t actually suspend, it can optimize away the frame allocation entirely. This is similar to function inlining but for async operations.</p>
+<h3>Frame Reuse</h3>
+<p>For async functions called in a loop, Swift can reuse async frames instead of allocating new ones each iteration:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">processItems</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> items<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Item</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> item <span class="token keyword">in</span> items <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> <span class="token function">process</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>  <span class="token comment">// Frame can be reused across iterations</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h2>Practical Implications</h2>
+<p>Understanding these internals helps you write better async code:</p>
+<h3>1. Local Variables and Captures</h3>
+<p>Variables that cross <code class="language-text">await</code> boundaries are stored in the async frame:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">processData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> largeObject <span class="token operator">=</span> <span class="token class-name">LargeObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// Allocated</span>
+    <span class="token keyword">await</span> <span class="token class-name">Task</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span>nanoseconds<span class="token punctuation">:</span> <span class="token number">1_000_000_000</span><span class="token punctuation">)</span>
+    <span class="token comment">// largeObject kept alive in async frame</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>largeObject<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>The <code class="language-text">largeObject</code> is kept alive for the entire duration. If you don’t need it after the await, consider scoping it:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">processData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">do</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> largeObject <span class="token operator">=</span> <span class="token class-name">LargeObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">processSync</span><span class="token punctuation">(</span>largeObject<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>  <span class="token comment">// largeObject can be deallocated</span>
+    <span class="token keyword">await</span> <span class="token class-name">Task</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span>nanoseconds<span class="token punctuation">:</span> <span class="token number">1_000_000_000</span><span class="token punctuation">)</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Done"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3>2. Continuation Safety</h3>
+<p>Never resume a continuation more than once:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// WRONG - potential double resume</span>
+<span class="token keyword">func</span> <span class="token function-definition function">dangerous</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> withUnsafeContinuation <span class="token punctuation">{</span> continuation <span class="token keyword">in</span>
+        performAsync <span class="token punctuation">{</span> result <span class="token keyword">in</span>
+            continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>returning<span class="token punctuation">:</span> result<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        continuation<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span>returning<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment">// ← BUG!</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Use checked continuations during development to catch these errors.</p>
+<h3>3. Executor Awareness</h3>
+<p>Be aware of executor hops:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">actor</span> <span class="token class-name">MyActor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// Executor hop out</span>
+        <span class="token comment">// Executor hop back to MyActor</span>
+        <span class="token keyword">await</span> <span class="token function">saveData</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>  <span class="token comment">// Executor hop out</span>
+        <span class="token comment">// Executor hop back to MyActor</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Each <code class="language-text">await</code> potentially involves executor switching. For performance-critical code, consider batching operations.</p>
+<h3>4. Avoiding Unnecessary Suspensions</h3>
+<p>If an operation might complete synchronously, you can avoid suspension overhead:</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">getCachedOrFetch</span><span class="token punctuation">(</span>key<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token operator">-></span> <span class="token class-name">Value</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Check cache first - no suspension needed</span>
+    <span class="token keyword">if</span> <span class="token keyword">let</span> cached <span class="token operator">=</span> cache<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> cached
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Only suspend if we need to fetch</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token function">fetchFromNetwork</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h2>Conclusion</h2>
+<p>Async/await may look like magic, but it’s built on elegant compiler transformations and runtime support:</p>
+<ul>
+<li><strong>State machines</strong> transform your sequential code into resumable operations</li>
+<li><strong>Continuations</strong> package up “what comes next” so execution can resume later</li>
+<li><strong>Async frames</strong> preserve local state across suspension points</li>
+<li><strong>Executor management</strong> ensures code runs in the right context</li>
+</ul>
+<p>Understanding these internals helps you:</p>
+<ul>
+<li>Write more efficient async code</li>
+<li>Debug async issues more effectively</li>
+<li>Make better architectural decisions</li>
+<li>Appreciate the engineering behind Swift’s concurrency model</li>
+</ul>
+<p>The beauty of async/await is that while the internals are complex, the programming model is simple—you write code that looks synchronous but gets all the benefits of non-blocking I/O.</p>
+<hr>
+<p><em>Want to dive deeper? Check out the <a href="https://gist.github.com/lattner/31ed37682ef1576b16bca1432ea9f782">Swift Concurrency Manifesto</a> and <a href="https://github.com/apple/swift-evolution/blob/main/proposals/0296-async-await.md">Swift Evolution proposals SE-0296</a> for more detailed technical discussions.</em></p></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;align-items:center;margin-bottom:4.375rem"><img src="/static/profile-pic-b6e69452d87f69342835c523035e8b5c.jpg" alt="Serg Dort" style="margin-right:0.875rem;margin-bottom:0;width:3.5rem;height:3.5rem;border-radius:50%"/><p style="margin:0">Written by <a href="https://twitter.com/SergDort">Serg Dort</a>. Say one thing for him: he ships code.</p></div></footer></article><nav><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li></li><li></li></ul></nav></main><footer>© <!-- -->2026<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-123633819-1"></script><script>
+      
+      function gaOptout(){document.cookie=disableStr+'=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/',window[disableStr]=!0}var gaProperty='UA-123633819-1',disableStr='ga-disable-'+gaProperty;document.cookie.indexOf(disableStr+'=true')>-1&&(window[disableStr]=!0);
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-123633819-1', {"anonymize_ip":true,"send_page_view":false});
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/async-await-internals/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-b0ba8eb420d8bdea7383.js\"],\"component---cache-caches-gatsby-plugin-offline-app-shell-js\":[\"/component---cache-caches-gatsby-plugin-offline-app-shell-js-b64fd46fe784f3830d25.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-0c727ae0233d457002f4.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-0945c5151f8079b45dc9.js\"],\"component---src-pages-tags-js\":[\"/component---src-pages-tags-js-c6f0f60e4177e6753c39.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-313e2728512e2c4d868c.js\"],\"component---src-templates-tag-js\":[\"/component---src-templates-tag-js-20a39127c784a2f18684.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="c503c490349be7b6d390";</script><script src="/webpack-runtime-c858cef90ef570b2971c.js" async></script><script src="/app-b0ba8eb420d8bdea7383.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
