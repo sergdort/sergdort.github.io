@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 31 Jan 2026 18:16:06 GMT</lastBuildDate><item><title><![CDATA[Building the Grok Loading Animation in SwiftUI: From GCD to TimelineView]]></title><description><![CDATA[When building loading animations in SwiftUI, we often reach for familiar patterns like  flags and animation modifiers. But what happens when…]]></description><link>https://sergdort.github.io/grok-loading-animation-swiftui/</link><guid isPermaLink="false">https://sergdort.github.io/grok-loading-animation-swiftui/</guid><pubDate>Sat, 31 Jan 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;When building loading animations in SwiftUI, we often reach for familiar patterns like &lt;code class=&quot;language-text&quot;&gt;@State&lt;/code&gt; flags and animation modifiers. But what happens when you need precise, synchronized animations that loop forever? Let’s explore building the Grok loading animation—a snake-like effect that travels through a 3×3 grid of circles—and discover why &lt;code class=&quot;language-text&quot;&gt;TimelineView&lt;/code&gt; is the superior solution.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 31 Jan 2026 18:27:32 GMT</lastBuildDate><item><title><![CDATA[Building the Grok Loading Animation in SwiftUI: From GCD to TimelineView]]></title><description><![CDATA[When building loading animations in SwiftUI, we often reach for familiar patterns like  flags and animation modifiers. But what happens when…]]></description><link>https://sergdort.github.io/grok-loading-animation-swiftui/</link><guid isPermaLink="false">https://sergdort.github.io/grok-loading-animation-swiftui/</guid><pubDate>Sat, 31 Jan 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ed3b88a0915e40e425f80096b8311270/72e01/cover_image.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAMEAQIF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgH/2gAMAwEAAhADEAAAAe3HNTYvAPGhTIIv/8QAHBAAAgICAwAAAAAAAAAAAAAAAQIAEAMREiIx/9oACAEBAAEFAmbiB0aGYNmj4tf/xAAXEQEAAwAAAAAAAAAAAAAAAAAQATFB/9oACAEDAQE/AZs0/8QAFxEBAAMAAAAAAAAAAAAAAAAAEAExQf/aAAgBAgEBPwGKMP/EABoQAAICAwAAAAAAAAAAAAAAAAABESEQIGH/2gAIAQEABj8CHM28UN91/8QAHBAAAgMAAwEAAAAAAAAAAAAAAREAECExQXGB/9oACAEBAAE/IRCJ7KhIEmTp1rRGtPVc0FE/K//aAAwDAQACAAMAAAAQ1wD8/8QAFxEBAQEBAAAAAAAAAAAAAAAAARARMf/aAAgBAwEBPxBOI8T/xAAXEQEBAQEAAAAAAAAAAAAAAAABEBEx/9oACAECAQE/ECbYdT//xAAdEAEAAgEFAQAAAAAAAAAAAAABESEAEDFBYXHB/9oACAEBAAE/EOMAFTbgOYU1NvB1oGUBJvZ6wJgCFvVLAPu+gk5iRMg4qRu8j5p//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cover_image&quot;
+        title=&quot;&quot;
+        src=&quot;/static/ed3b88a0915e40e425f80096b8311270/1c72d/cover_image.jpg&quot;
+        srcset=&quot;/static/ed3b88a0915e40e425f80096b8311270/a80bd/cover_image.jpg 148w,
+/static/ed3b88a0915e40e425f80096b8311270/1c91a/cover_image.jpg 295w,
+/static/ed3b88a0915e40e425f80096b8311270/1c72d/cover_image.jpg 590w,
+/static/ed3b88a0915e40e425f80096b8311270/a8a14/cover_image.jpg 885w,
+/static/ed3b88a0915e40e425f80096b8311270/72e01/cover_image.jpg 1024w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;When building loading animations in SwiftUI, we often reach for familiar patterns like &lt;code class=&quot;language-text&quot;&gt;@State&lt;/code&gt; flags and animation modifiers. But what happens when you need precise, synchronized animations that loop forever? Let’s explore building the Grok loading animation—a snake-like effect that travels through a 3×3 grid of circles—and discover why &lt;code class=&quot;language-text&quot;&gt;TimelineView&lt;/code&gt; is the superior solution.&lt;/p&gt;
 &lt;h2&gt;The Challenge&lt;/h2&gt;
 &lt;p&gt;The Grok loading animation creates a “snake” effect:&lt;/p&gt;
 &lt;ol&gt;
