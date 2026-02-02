@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 02 Feb 2026 16:39:53 GMT</lastBuildDate><item><title><![CDATA[Embrace the Industrial Software Development Revolution]]></title><description><![CDATA[I might be late to the AI agentic programming party—I only started embracing it properly a few weeks ago—but my god, the hype is real. I can…]]></description><link>https://sergdort.github.io/industrial-software-development-revolution/</link><guid isPermaLink="false">https://sergdort.github.io/industrial-software-development-revolution/</guid><pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I might be late to the AI agentic programming party—I only started embracing it properly a few weeks ago—but my god, the hype is real. I can confidently say I don’t want to write code by hand anymore. Not because I’m lazy, but because I find it inefficient and, honestly, boring.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 02 Feb 2026 22:05:50 GMT</lastBuildDate><item><title><![CDATA[Embrace the Industrial Software Development Revolution]]></title><description><![CDATA[I might be late to the AI agentic programming party—I only started embracing it properly a few weeks ago—but my god, the hype is real. I can…]]></description><link>https://sergdort.github.io/industrial-software-development-revolution/</link><guid isPermaLink="false">https://sergdort.github.io/industrial-software-development-revolution/</guid><pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d3c27e286f4be8a82f30692c8abab6af/e5166/jarvis.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.891891891891895%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAHGozAv/8QAFxAAAwEAAAAAAAAAAAAAAAAAAAExAv/aAAgBAQABBQJSj2z/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAWEAEBAQAAAAAAAAAAAAAAAAAAQeH/2gAIAQEABj8CRj//xAAaEAEAAwADAAAAAAAAAAAAAAABABEhMXGR/9oACAEBAAE/IVemu4ILNDkXzXif/9oADAMBAAIAAwAAABAP3//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/EGf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAEBAAIDAAAAAAAAAAAAAAABEQAhMYGx/9oACAEBAAE/ECmfIq0ZUw1gFesULoJoPDP/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Tony Stark working with Jarvis&quot;
+        title=&quot;&quot;
+        src=&quot;/static/d3c27e286f4be8a82f30692c8abab6af/1c72d/jarvis.jpg&quot;
+        srcset=&quot;/static/d3c27e286f4be8a82f30692c8abab6af/a80bd/jarvis.jpg 148w,
+/static/d3c27e286f4be8a82f30692c8abab6af/1c91a/jarvis.jpg 295w,
+/static/d3c27e286f4be8a82f30692c8abab6af/1c72d/jarvis.jpg 590w,
+/static/d3c27e286f4be8a82f30692c8abab6af/a8a14/jarvis.jpg 885w,
+/static/d3c27e286f4be8a82f30692c8abab6af/fbd2c/jarvis.jpg 1180w,
+/static/d3c27e286f4be8a82f30692c8abab6af/e5166/jarvis.jpg 1200w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I might be late to the AI agentic programming party—I only started embracing it properly a few weeks ago—but my god, the hype is real. I can confidently say I don’t want to write code by hand anymore. Not because I’m lazy, but because I find it inefficient and, honestly, boring.&lt;/p&gt;
 &lt;p&gt;I get the sentiment from people who think AI coding means losing the sense of craftsmanship, the personal touch. But here’s my controversial take: &lt;strong&gt;that kind of craftsmanship needs to die.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Let me be clear—I’m not talking about abandoning the desire to produce high-quality software that’s testable, secure, and bug-free. Those positive aspects must stay. What needs to go are the medieval notions of craftsmanship that still plague modern software development.&lt;/p&gt;
 &lt;h2&gt;The Medieval Craftsmanship Problem&lt;/h2&gt;
