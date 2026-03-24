@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 09 Feb 2026 20:24:35 GMT</lastBuildDate><item><title><![CDATA[Why Tuist Is the Missing Piece for Agentic iOS Development]]></title><description><![CDATA[Why Tuist Is the Missing Piece for Agentic iOS Development I’ve been using Tuist for my side project since day one. You might think that’s…]]></description><link>https://sergdort.github.io/tuist-worktrees-agentic-ios/</link><guid isPermaLink="false">https://sergdort.github.io/tuist-worktrees-agentic-ios/</guid><pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 24 Mar 2026 16:38:10 GMT</lastBuildDate><item><title><![CDATA[Making AI Coding Agents Sound Like Dota 2 Heroes]]></title><description><![CDATA[I use Claude Code for most of my personal projects and OpenCode at work. I’ve been meaning to try Pi for a while. I’m quite happy with…]]></description><link>https://sergdort.github.io/dota2-hero-sounds-notifications/</link><guid isPermaLink="false">https://sergdort.github.io/dota2-hero-sounds-notifications/</guid><pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 554px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7d1cd5c5ba1df6f8395d7b49b4516d67/577b7/dota2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAECAwQF/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//aAAwDAQACEAMQAAABX58ZVkXD15HII//EABsQAAICAwEAAAAAAAAAAAAAAAECABIDERQy/9oACAEBAAEFAsbVHQashJJ0xqzbhNm85LtP/8QAFhEAAwAAAAAAAAAAAAAAAAAAABAh/9oACAEDAQE/ASP/xAAXEQADAQAAAAAAAAAAAAAAAAAAEBEh/9oACAECAQE/AYa//8QAGxAAAgIDAQAAAAAAAAAAAAAAACEBMQIRQRD/2gAIAQEABj8CV8Jxyl8NyOheMjRZ/8QAHBABAAICAwEAAAAAAAAAAAAAAQARIUExUXGR/9oACAEBAAE/IQVRKigbCbEMoOziA3DyKvEUsPCfA3EFChP/2gAMAwEAAgADAAAAEDcXQf/EABcRAAMBAAAAAAAAAAAAAAAAAAABERD/2gAIAQMBAT8QdRcVn//EABcRAAMBAAAAAAAAAAAAAAAAAAABETH/2gAIAQIBAT8QhlCwiP/EABoQAQEBAQEBAQAAAAAAAAAAAAERACExcaH/2gAIAQEAAT8QIkfg/cNRXorbZuK405efcBKeUPXmXLa+LO4sCaIgegQM0yoWevc7IHwN/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cover_image&quot;
+        title=&quot;&quot;
+        src=&quot;/static/7d1cd5c5ba1df6f8395d7b49b4516d67/577b7/dota2.jpg&quot;
+        srcset=&quot;/static/7d1cd5c5ba1df6f8395d7b49b4516d67/a80bd/dota2.jpg 148w,
+/static/7d1cd5c5ba1df6f8395d7b49b4516d67/1c91a/dota2.jpg 295w,
+/static/7d1cd5c5ba1df6f8395d7b49b4516d67/577b7/dota2.jpg 554w&quot;
+        sizes=&quot;(max-width: 554px) 100vw, 554px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;400&quot; src=&quot;https://www.youtube.com/embed/u5xKDsT0iIk&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;I use Claude Code for most of my personal projects and &lt;a href=&quot;https://opencode.ai&quot;&gt;OpenCode&lt;/a&gt; at work. I’ve been meaning to try &lt;a href=&quot;https://pi.dev&quot;&gt;Pi&lt;/a&gt; for a while. I’m quite happy with Claude, so I never had a proper reason to dive in — until I stumbled across &lt;a href=&quot;https://github.com/pantheon-org/opencode-warcraft-notifications&quot;&gt;opencode-warcraft-notifications&lt;/a&gt;. It’s a brilliant idea: play World of Warcraft sounds as notifications for your coding agent. The only problem? I’ve never played WoW, so I have zero emotional attachment to those sounds. Dota 2, on the other hand — I played that game for years and had an absolute blast with my friends. The voice lines are burned into my brain.&lt;/p&gt;
+&lt;p&gt;So I did what any reasonable person would do. I made my coding tools yell at me in the voice of Dota 2 heroes.&lt;/p&gt;
+&lt;h2&gt;The Idea&lt;/h2&gt;
+&lt;p&gt;If you’ve played Dota 2, you know the voice lines are iconic. Axe screaming “Axe cuts no more…” when he dies. Zeus saying “Your god has arrived.” entering the buttle. Pudge’s “Get over here!” when he hooks you. These lines carry unmistakable emotional weight — you know immediately whether something good happened, something bad happened, or something needs your attention.&lt;/p&gt;
+&lt;p&gt;That maps perfectly onto coding agent events:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Task complete&lt;/strong&gt; — play a victory line. “Axe-actly!”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error&lt;/strong&gt; — play a defeat line. “All your fault!” “Bury me here.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Needs attention&lt;/strong&gt; — play a thinking/waiting line. “Hey, I was thinking!”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Session start&lt;/strong&gt; — play a battle cry. “TO THE ENEMY!” “Back for more!”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The feedback is instant and ambient. I don’t need to look at the terminal to know what happened. And honestly, hearing Axe celebrate after a successful refactor never gets old.&lt;/p&gt;
+&lt;h2&gt;Three Tools, Three Integration Models&lt;/h2&gt;
+&lt;p&gt;The interesting engineering challenge wasn’t playing sounds — that’s just &lt;code class=&quot;language-text&quot;&gt;afplay&lt;/code&gt; on macOS. The challenge was integrating with three fundamentally different hook systems.&lt;/p&gt;
+&lt;h3&gt;Claude Code: Shell Hooks&lt;/h3&gt;
+&lt;p&gt;Claude Code has the most straightforward model. You add shell commands to &lt;code class=&quot;language-text&quot;&gt;~/.claude/settings.json&lt;/code&gt; that trigger on specific events like &lt;code class=&quot;language-text&quot;&gt;Stop&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;Notification&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;PostToolUseFailure&lt;/code&gt;, and &lt;code class=&quot;language-text&quot;&gt;SessionStart&lt;/code&gt;. Each hook is just a command that runs when the event fires.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;hooks&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;Stop&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;command&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;command&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;node /path/to/dist/play.js success&quot;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Clean, simple, no surprises. The hook runs, the sound plays, everyone’s happy.&lt;/p&gt;
+&lt;h3&gt;OpenCode: JavaScript Plugin&lt;/h3&gt;
+&lt;p&gt;OpenCode uses a plugin system where you write a JavaScript file that exports an &lt;code class=&quot;language-text&quot;&gt;init&lt;/code&gt; function. The plugin receives a &lt;code class=&quot;language-text&quot;&gt;session&lt;/code&gt; object and subscribes to events. This is more powerful but has some quirks.&lt;/p&gt;
+&lt;p&gt;The biggest one: there’s no reliable “task completed” event. &lt;code class=&quot;language-text&quot;&gt;session.idle&lt;/code&gt; isn’t what you’d expect. Instead, you have to watch for &lt;code class=&quot;language-text&quot;&gt;session.status&lt;/code&gt; transitions from &lt;code class=&quot;language-text&quot;&gt;busy&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;idle&lt;/code&gt;. Similarly, &lt;code class=&quot;language-text&quot;&gt;session.created&lt;/code&gt; fires before the plugin even loads, so for the start sound you just play it on plugin init.&lt;/p&gt;
+&lt;p&gt;These are the kinds of things you only discover by actually building against the API.&lt;/p&gt;
+&lt;h3&gt;Pi: Extension Package&lt;/h3&gt;
+&lt;p&gt;Pi has a proper extension system — you create a package with a &lt;code class=&quot;language-text&quot;&gt;pi&lt;/code&gt; key in &lt;code class=&quot;language-text&quot;&gt;package.json&lt;/code&gt;, and Pi loads it via &lt;code class=&quot;language-text&quot;&gt;jiti&lt;/code&gt; (so no compilation needed, just TypeScript directly). You subscribe to lifecycle events like &lt;code class=&quot;language-text&quot;&gt;session_start&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;agent_end&lt;/code&gt;, and &lt;code class=&quot;language-text&quot;&gt;tool_execution_end&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Pi’s model is the most structured of the three, but it has a gap: there’s no permission or notification event, so there’s no way to play the “needs attention” sound. You work with what the platform gives you.&lt;/p&gt;
+&lt;h2&gt;What I Learned&lt;/h2&gt;
+&lt;p&gt;Building the same feature across three different tools surfaces their design philosophies clearly.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Claude Code&lt;/strong&gt; treats hooks as fire-and-forget shell commands. It’s the Unix philosophy — compose small tools via the shell. The downside is that your hook has no context about the session. The upside is that any language, any tool, any script can be a hook.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenCode&lt;/strong&gt; gives you a richer runtime — you’re inside a JavaScript process with access to session state. You can make decisions based on context, which is why the busy-to-idle detection works. But you’re coupled to their API surface, which is still evolving.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pi&lt;/strong&gt; sits somewhere in between. You get typed events with structured data (like &lt;code class=&quot;language-text&quot;&gt;isError&lt;/code&gt; on tool execution results), but you install as a proper package with its own manifest. It feels the most “production-ready” of the three integration models.&lt;/p&gt;
+&lt;p&gt;The sound playback itself needed a few practical touches: a 3-second debounce cooldown prevents overlapping voice lines (agents can fire multiple events in quick succession), and the &lt;code class=&quot;language-text&quot;&gt;afplay&lt;/code&gt; process is detached so it never blocks the agent.&lt;/p&gt;
+&lt;h2&gt;Hero Selection&lt;/h2&gt;
+&lt;p&gt;I added hero filtering mostly because my partner was getting tired of hearing Axe all day. You can pick specific heroes and only hear their lines:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;npx dota2-hero-sounds hero &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; crystal_maiden zeus&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The implementation is simple — hero names are extracted from the filename prefix (&lt;code class=&quot;language-text&quot;&gt;Vo_&amp;lt;hero&gt;_*.mp3&lt;/code&gt;), and sounds are filtered at runtime based on your config. If your selected heroes don’t have sounds for a particular category, it falls back to all heroes. Config lives in &lt;code class=&quot;language-text&quot;&gt;~/.config/dota2-sounds/config.json&lt;/code&gt; and takes effect immediately — no reinstall needed.&lt;/p&gt;
+&lt;h2&gt;Custom Sounds&lt;/h2&gt;
+&lt;p&gt;The package isn’t limited to Dota 2. Any &lt;code class=&quot;language-text&quot;&gt;.mp3&lt;/code&gt; works. Movie quotes, meme sounds, game SFX — organize them into &lt;code class=&quot;language-text&quot;&gt;success/&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;error/&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;attention/&lt;/code&gt;, and &lt;code class=&quot;language-text&quot;&gt;start/&lt;/code&gt; folders and point the tool at your directory:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;npx dota2-hero-sounds sounds &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; ~/my-custom-sounds&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I’ve seen people use Star Wars quotes, Dark Souls death sounds for errors, and the Metal Gear Solid alert noise for attention prompts. The categorization is by emotional meaning, not literal content — a voice line about “falling” could be an error sound if it sounds defeated, or a start sound if it sounds dramatic.&lt;/p&gt;
+&lt;h2&gt;Try It&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;npx dota2-hero-sounds &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It auto-detects which tools you have installed. One command, and your next coding session starts with a battle cry.&lt;/p&gt;
+&lt;p&gt;The source is on &lt;a href=&quot;https://github.com/aspect-build/dota2-hero-sounds&quot;&gt;GitHub&lt;/a&gt; — PRs welcome, especially if you want to add cross-platform support (currently macOS-only due to &lt;code class=&quot;language-text&quot;&gt;afplay&lt;/code&gt;). And if you have a favorite Dota 2 voice line that’s missing, just drop the &lt;code class=&quot;language-text&quot;&gt;.mp3&lt;/code&gt; in the right folder and you’re done.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Why Tuist Is the Missing Piece for Agentic iOS Development]]></title><description><![CDATA[Why Tuist Is the Missing Piece for Agentic iOS Development I’ve been using Tuist for my side project since day one. You might think that’s…]]></description><link>https://sergdort.github.io/tuist-worktrees-agentic-ios/</link><guid isPermaLink="false">https://sergdort.github.io/tuist-worktrees-agentic-ios/</guid><pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
