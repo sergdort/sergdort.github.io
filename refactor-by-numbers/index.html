@@ -39,14 +39,17 @@
 <p>I run a quality audit over a module or a commit range. It is a manual command, not part of the agent loop, and it is report-only. It never fixes anything. It runs three passes and joins them:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">scope: a module path, or a commit range base..HEAD
    │
-   ├─ complexity review     cyclomatic + cognitive, per function
-   ├─ coverage + CRAP join  xcresult coverage × complexity
-   └─ mutation testing      edit the code, see if a test screams
+   ├─ swift-complexity      cyclomatic + cognitive, per function
+   ├─ XcodeBuildMCP         XCTest with coverage → xcresult
+   ├─ xccov + jq            coverage × complexity → CRAP
+   └─ auditor subagent      mutate once, run tests, restore
    │
    ▼
 report only. the agent triages, a human approves</code></pre></div>
 <p>The command hands the work to a separate auditor subagent, not the agent that wrote the code. That separation is the whole trick. An implementation agent is trying to finish a task, and “the code is fine” is the shortest path to finished. The auditor has no task to finish and no feature to ship. It runs the tools, writes down what they say, and stops.</p>
-<p>The other important property is that the audit both selects the work and grades it. The same tool that picked the targets decides afterwards whether they improved. The agent never gets to be its own referee.</p>
+<p>The stack is small. <a href="https://github.com/fummicc1/swift-complexity">swift-complexity</a> measures cyclomatic and cognitive complexity. <a href="https://www.xcodebuildmcp.com">XcodeBuildMCP</a> runs the module’s XCTest suite with coverage enabled and returns an <code class="language-text">.xcresult</code> bundle. Apple’s <code class="language-text">xccov</code> extracts per-function coverage. Two repository scripts use <code class="language-text">jq</code> to join that coverage to the complexity report and calculate CRAP. <code class="language-text">mise</code> pins <code class="language-text">swift-complexity</code> and <code class="language-text">jq</code>, then exposes the whole thing as <code class="language-text">mise run complexity-review</code> and <code class="language-text">mise run crap-review</code>.</p>
+<p>There is no mutation-testing package hiding behind the last pass. The auditor edits one operator, runs the focused XCTest suite through XcodeBuildMCP, records whether the tests kill the mutant, then reverses the edit. Git hashes and an empty diff prove that the source file came back byte for byte.</p>
+<p>The other important property is that the audit both selects the work and grades it. The same measurements that picked the targets decide afterwards whether they improved. The agent never gets to be its own referee.</p>
 <h2>Step 1: point it at the module, read the ranking</h2>
 <p>I pointed it at Oratio’s Reader module. It measured 430 non-UI functions, matched 426 of them to coverage data, and sorted them by CRAP.</p>
 <p>CRAP stands for Change Risk Anti-Patterns. It is one of the few code metrics with a definition you can argue with mathematically rather than aesthetically:</p>
@@ -149,7 +152,7 @@ report only. the agent triages, a human approves</code></pre></div>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>That shape is easy to test, which is the point. But “easy to test” is another adjective, so back to the audit.</p>
-<h2>Step 4: the same tool grades the result</h2>
+<h2>Step 4: the same measurements grade the result</h2>
 <p>I ran the audit over the refactor twice. Once right after the rewrite, and again after landing the five tests the first pass asked for.</p>
 <table>
 <thead>

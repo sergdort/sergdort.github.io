@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 26 Aug 2026 14:50:49 GMT</lastBuildDate><item><title><![CDATA[Refactor by Numbers]]></title><description><![CDATA[Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me…]]></description><link>https://sergdort.github.io/refactor-by-numbers/</link><guid isPermaLink="false">https://sergdort.github.io/refactor-by-numbers/</guid><pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 26 Aug 2026 15:11:48 GMT</lastBuildDate><item><title><![CDATA[Refactor by Numbers]]></title><description><![CDATA[Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me…]]></description><link>https://sergdort.github.io/refactor-by-numbers/</link><guid isPermaLink="false">https://sergdort.github.io/refactor-by-numbers/</guid><pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
@@ -39,14 +39,17 @@
 &lt;p&gt;I run a quality audit over a module or a commit range. It is a manual command, not part of the agent loop, and it is report-only. It never fixes anything. It runs three passes and joins them:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;scope: a module path, or a commit range base..HEAD
    │
-   ├─ complexity review     cyclomatic + cognitive, per function
-   ├─ coverage + CRAP join  xcresult coverage × complexity
-   └─ mutation testing      edit the code, see if a test screams
+   ├─ swift-complexity      cyclomatic + cognitive, per function
+   ├─ XcodeBuildMCP         XCTest with coverage → xcresult
+   ├─ xccov + jq            coverage × complexity → CRAP
+   └─ auditor subagent      mutate once, run tests, restore
    │
    ▼
 report only. the agent triages, a human approves&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The command hands the work to a separate auditor subagent, not the agent that wrote the code. That separation is the whole trick. An implementation agent is trying to finish a task, and “the code is fine” is the shortest path to finished. The auditor has no task to finish and no feature to ship. It runs the tools, writes down what they say, and stops.&lt;/p&gt;
-&lt;p&gt;The other important property is that the audit both selects the work and grades it. The same tool that picked the targets decides afterwards whether they improved. The agent never gets to be its own referee.&lt;/p&gt;
+&lt;p&gt;The stack is small. &lt;a href=&quot;https://github.com/fummicc1/swift-complexity&quot;&gt;swift-complexity&lt;/a&gt; measures cyclomatic and cognitive complexity. &lt;a href=&quot;https://www.xcodebuildmcp.com&quot;&gt;XcodeBuildMCP&lt;/a&gt; runs the module’s XCTest suite with coverage enabled and returns an &lt;code class=&quot;language-text&quot;&gt;.xcresult&lt;/code&gt; bundle. Apple’s &lt;code class=&quot;language-text&quot;&gt;xccov&lt;/code&gt; extracts per-function coverage. Two repository scripts use &lt;code class=&quot;language-text&quot;&gt;jq&lt;/code&gt; to join that coverage to the complexity report and calculate CRAP. &lt;code class=&quot;language-text&quot;&gt;mise&lt;/code&gt; pins &lt;code class=&quot;language-text&quot;&gt;swift-complexity&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;jq&lt;/code&gt;, then exposes the whole thing as &lt;code class=&quot;language-text&quot;&gt;mise run complexity-review&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;mise run crap-review&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There is no mutation-testing package hiding behind the last pass. The auditor edits one operator, runs the focused XCTest suite through XcodeBuildMCP, records whether the tests kill the mutant, then reverses the edit. Git hashes and an empty diff prove that the source file came back byte for byte.&lt;/p&gt;
+&lt;p&gt;The other important property is that the audit both selects the work and grades it. The same measurements that picked the targets decide afterwards whether they improved. The agent never gets to be its own referee.&lt;/p&gt;
 &lt;h2&gt;Step 1: point it at the module, read the ranking&lt;/h2&gt;
 &lt;p&gt;I pointed it at Oratio’s Reader module. It measured 430 non-UI functions, matched 426 of them to coverage data, and sorted them by CRAP.&lt;/p&gt;
 &lt;p&gt;CRAP stands for Change Risk Anti-Patterns. It is one of the few code metrics with a definition you can argue with mathematically rather than aesthetically:&lt;/p&gt;
@@ -149,7 +152,7 @@ report only. the agent triages, a human approves&lt;/code&gt;&lt;/pre&gt;&lt;/di
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;That shape is easy to test, which is the point. But “easy to test” is another adjective, so back to the audit.&lt;/p&gt;
-&lt;h2&gt;Step 4: the same tool grades the result&lt;/h2&gt;
+&lt;h2&gt;Step 4: the same measurements grade the result&lt;/h2&gt;
 &lt;p&gt;I ran the audit over the refactor twice. Once right after the rewrite, and again after landing the five tests the first pass asked for.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
