@@ -1,0 +1,243 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.15.0"/><meta name="theme-color" content="#663399"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" data-gatsby-head="true"/><meta name="description" content="Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me exactly that last…" data-gatsby-head="true"/><meta property="og:title" content="Refactor by Numbers | Journey before destination, tests before production" data-gatsby-head="true"/><meta property="og:description" content="Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me exactly that last…" data-gatsby-head="true"/><meta property="og:type" content="website" data-gatsby-head="true"/><meta name="twitter:card" content="summary" data-gatsby-head="true"/><meta name="twitter:creator" content="Serg Dort" data-gatsby-head="true"/><meta name="twitter:title" content="Refactor by Numbers | Journey before destination, tests before production" data-gatsby-head="true"/><meta name="twitter:description" content="Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me exactly that last…" data-gatsby-head="true"/><style data-href="/styles.736ccbfe37e3851a589d.css" data-identity="gatsby-global-css">@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-8d7d79679b70dbe27172b6460e7a7910.woff2) format("woff2"),url(/static/montserrat-latin-100-ec38980a9e0119a379e2a9b3dbb1901a.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e279051046ba1286706adc886cf1c96b.woff2) format("woff2"),url(/static/montserrat-latin-100italic-3b325a3173c8207435cd1b76e19bf501.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-9d266fbbfa6cab7009bd56003b1eeb67.woff2) format("woff2"),url(/static/montserrat-latin-200-2d8ba08717110d27122e54c34b8a5798.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-6e5b3756583bb2263eb062eae992735e.woff2) format("woff2"),url(/static/montserrat-latin-200italic-a0d6f343e4b536c582926255367a57da.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-00b3e893aab5a8fd632d6342eb72551a.woff2) format("woff2"),url(/static/montserrat-latin-300-ea303695ceab35f17e7d062f30e0173b.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-56f34ea368f6aedf89583d444bbcb227.woff2) format("woff2"),url(/static/montserrat-latin-300italic-54b0bf2c8c4c12ffafd803be2466a790.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-b71748ae4f80ec8c014def4c5fa8688b.woff2) format("woff2"),url(/static/montserrat-latin-400-0659a9f4e90db5cf51b50d005bff1e41.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-6eed6b4cbb809c6efc7aa7ddad6dbe3e.woff2) format("woff2"),url(/static/montserrat-latin-400italic-7583622cfde30ae49086d18447ab28e7.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-091b209546e16313fd4f4fc36090c757.woff2) format("woff2"),url(/static/montserrat-latin-500-edd311588712a96bbf435fad264fff62.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-c90ced68b46050061d1a41842d6dfb43.woff2) format("woff2"),url(/static/montserrat-latin-500italic-5146cbfe02b1deea5dffea27a5f2f998.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-0480d2f8a71f38db8633b84d8722e0c2.woff2) format("woff2"),url(/static/montserrat-latin-600-b77863a375260a05dd13f86a1cee598f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-cf46ffb11f3a60d7df0567f8851a1d00.woff2) format("woff2"),url(/static/montserrat-latin-600italic-c4fcfeeb057724724097167e57bd7801.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-7dbcc8a5ea2289d83f657c25b4be6193.woff2) format("woff2"),url(/static/montserrat-latin-700-99271a835e1cae8c76ef8bba99a8cc4e.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-c41ad6bdb4bd504a843d546d0a47958d.woff2) format("woff2"),url(/static/montserrat-latin-700italic-6779372f04095051c62ed36bc1dcc142.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-db9a3e0ba7eaea32e5f55328ace6cf23.woff2) format("woff2"),url(/static/montserrat-latin-800-4e3c615967a2360f5db87d2f0fd2456f.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-bf45bfa14805969eda318973947bc42b.woff2) format("woff2"),url(/static/montserrat-latin-800italic-fe82abb0bcede51bf724254878e0c374.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:normal;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-e66c7edc609e24bacbb705175669d814.woff2) format("woff2"),url(/static/montserrat-latin-900-8211f418baeb8ec880b80ba3c682f957.woff) format("woff")}@font-face{font-display:swap;font-family:Montserrat;font-style:italic;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-4454c775e48152c1a72510ceed3603e2.woff2) format("woff2"),url(/static/montserrat-latin-900italic-efcaa0f6a82ee0640b83a0916e6e8d68.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-fc117160c69a8ea0851b26dd14748ee4.woff2) format("woff2"),url(/static/merriweather-latin-300-58b18067ebbd21fda77b67e73c241d3b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-fe29961474f8dbf77c0aa7b9a629e4bc.woff2) format("woff2"),url(/static/merriweather-latin-300italic-23c3f1f88683618a4fb8d265d33d383a.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-d9479e8023bef9cbd9bf8d6eabd6bf36.woff2) format("woff2"),url(/static/merriweather-latin-400-040426f99ff6e00b86506452e0d1f10b.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-2de7bfeaf08fb03d4315d49947f062f7.woff2) format("woff2"),url(/static/merriweather-latin-400italic-79db67aca65f5285964ab332bd65f451.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-4b08e01d805fa35d7bf777f1b24314ae.woff2) format("woff2"),url(/static/merriweather-latin-700-22fb8afba4ab1f093b6ef9e28a9b6e92.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-cd92541b177652fffb6e3b952f1c33f1.woff2) format("woff2"),url(/static/merriweather-latin-700italic-f87f3d87cea0dd0979bfc8ac9ea90243.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-f813fc6a4bee46eda5224ac7ebf1b7be.woff2) format("woff2"),url(/static/merriweather-latin-900-5d4e42cb44410674acd99153d57df032.woff) format("woff")}@font-face{font-display:swap;font-family:Merriweather;font-style:italic;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-b7901d85486871c1779c0e93ddd85656.woff2) format("woff2"),url(/static/merriweather-latin-900italic-9647f9fdab98756989a8a5550eb205c3.woff) format("woff")}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#f8f8f2;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 1px rgba(0,0,0,.3);white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}*{box-sizing:border-box}body,html{margin:0;overflow-x:hidden;padding:0;width:100%}@media (max-width:768px){body{font-size:16px}.site-title{font-size:2.5rem!important;line-height:1.1!important}main img{height:auto;max-width:100%}pre[class*=language-]{border-radius:0;margin-left:-1rem;margin-right:-1rem;max-width:100%;overflow-x:auto;padding-left:1rem!important;padding-right:1rem!important}code{word-wrap:break-word;overflow-wrap:break-word}table{display:block;overflow-x:auto;white-space:nowrap}h1{word-wrap:break-word;font-size:1.8rem;line-height:1.2}h2{font-size:1.5rem}h2,h3{word-wrap:break-word;line-height:1.3}h3{font-size:1.3rem}}@media (max-width:480px){body{font-size:15px}.site-title{font-size:2rem!important}h1{font-size:1.6rem}h2{font-size:1.4rem}h3{font-size:1.2rem}}img{height:auto;max-width:100%}.gatsby-resp-image-wrapper{max-width:100%!important}iframe{max-width:100%}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><link rel="alternate" type="application/rss+xml" title="Serg Dort&#x27;s Blog RSS Feed" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=87842467b72dd90d1ebdb463dad971b8" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=87842467b72dd90d1ebdb463dad971b8"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=87842467b72dd90d1ebdb463dad971b8"/><style>html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><title data-gatsby-head="true">Refactor by Numbers | Journey before destination, tests before production | Journey before destination, tests before production</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:52.5rem;padding:2.625rem max(1.3125rem, min(5vw, 1.75rem));width:100%;box-sizing:border-box"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/">Journey before destination, tests before production</a></h3></header><main><article itemscope="" itemType="http://schema.org/Article"><header><h1 style="margin-top:1.75rem;margin-bottom:0" itemProp="headline">Refactor by Numbers</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:0.875rem">August 26, 2026</p><div style="margin-bottom:1.75rem"><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/ai/">ai</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/testing/">testing</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/code-quality/">code quality</a><a style="display:inline-block;background-color:#f0f0f0;color:#333;padding:0.2rem 0.6rem;margin-right:0.5rem;margin-bottom:0.5rem;border-radius:3px;font-size:0.85rem;text-decoration:none;box-shadow:none" href="/tags/ios/">ios</a></div></header><section itemProp="articleBody"><p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8265cd40778e20e648ddd1df29826f8c/5b6ee/cover_image.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.08108108108109%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACM0lEQVR42k2Ry2sTQRjA968RhNI/Qb14FU8WxYMPPAoiKvYmnmzASB/2YS1KhBZNKUlTi6VNa9Mk29RW224S1jxN3c1udmd2ZmdnH6ke/HZ7EX4MM9/M73swArM0wCG6YxsO6Tk0wtI5NV0beQx7juXzkIAToO/Rvmef+iFCqNEeMxRbaVGk2ajLqcEt3QPT+c90yRl9AOTIFxjWfZ/+Ku7k79zCm6tIlhykgeYDnEQmrCSMRCkiOSwOCJahcJceZdKJgUE19sxaW0R1CXoGOWAocCk4fZeCHJxpLo3kcCNYpso43n43N3HufH7oqpl4RXNJV6kEHgs4BSFqHkEK6LMfjQqmH45ABbPboQxlRl6MDgwuXb5UfnrXW504ldJe99B3zL4LT5lNexgpFlIp0XzX+hMwj+PAowI2FIy1T8PDYxcupq5d2b0/9HvqgboaN6Qlo5M3jSohJ9wxTHQCJoCxqmjNvwEPZ9a7nVatMvfo8esb1+fv3fz85LY48fDb4vOD3Mzu3oficVKU00V55Xs7K9Y3dhvZo06+VN+STko6ags1uZzbXH8/NpqIxz6OjaTexlYWXmZS8eX18VRhOlWaTYrT84XJBXFmKhufzMZnv44ndt6Ufm5ZRA0rt5tyTZYa9UqzWW3Uy61mpdmWaq3DamNfbh9U23vHDXFf3i6UN3LHa1s/vpQbB4z2uG0KjPRsS6dYt7HOrJ5DDPgnh5oQIabG4Gib8AaAeHhFAMOhIf8ARUgvIxUyFvgAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="cover_image"
+        title=""
+        src="/static/8265cd40778e20e648ddd1df29826f8c/fcda8/cover_image.png"
+        srcset="/static/8265cd40778e20e648ddd1df29826f8c/12f09/cover_image.png 148w,
+/static/8265cd40778e20e648ddd1df29826f8c/e4a3f/cover_image.png 295w,
+/static/8265cd40778e20e648ddd1df29826f8c/fcda8/cover_image.png 590w,
+/static/8265cd40778e20e648ddd1df29826f8c/efc66/cover_image.png 885w,
+/static/8265cd40778e20e648ddd1df29826f8c/c83ae/cover_image.png 1180w,
+/static/8265cd40778e20e648ddd1df29826f8c/5b6ee/cover_image.png 1672w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about.</p>
+<p>Do you believe it?</p>
+<p>Mine told me exactly that last week, and I had no way to tell. The agent that wrote the code is the same agent grading it. It has no memory of the bug it just introduced, no fear of the pager, and no doubt. Doubt is not part of next-token prediction. Ask an agent whether its own code is good and you get a confident yes, because a confident yes is what that sentence usually looks like.</p>
+<p>So I stopped asking. I made the tooling answer instead.</p>
+<h2>The rule: no adjectives, only measurements</h2>
+<p>I run a quality audit over a module or a commit range. It is a manual command, not part of the agent loop, and it is report-only. It never fixes anything. It runs three passes and joins them:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">scope: a module path, or a commit range base..HEAD
+   │
+   ├─ complexity review     cyclomatic + cognitive, per function
+   ├─ coverage + CRAP join  xcresult coverage × complexity
+   └─ mutation testing      edit the code, see if a test screams
+   │
+   ▼
+report only. the agent triages, a human approves</code></pre></div>
+<p>The command hands the work to a separate auditor subagent, not the agent that wrote the code. That separation is the whole trick. An implementation agent is trying to finish a task, and “the code is fine” is the shortest path to finished. The auditor has no task to finish and no feature to ship. It runs the tools, writes down what they say, and stops.</p>
+<p>The other important property is that the audit both selects the work and grades it. The same tool that picked the targets decides afterwards whether they improved. The agent never gets to be its own referee.</p>
+<h2>Step 1: point it at the module, read the ranking</h2>
+<p>I pointed it at Oratio’s Reader module. It measured 430 non-UI functions, matched 426 of them to coverage data, and sorted them by CRAP.</p>
+<p>CRAP stands for Change Risk Anti-Patterns. It is one of the few code metrics with a definition you can argue with mathematically rather than aesthetically:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">CRAP = complexity² × (1 − coverage)³ + complexity</code></pre></div>
+<p>Read that formula for a second, because it encodes an opinion. Complexity is squared. The uncovered fraction is <em>cubed</em>. Full coverage collapses the whole first term to zero, and CRAP decays to plain complexity. Complex code is not the problem. Complex code nobody tested is the problem.</p>
+<p>The ranking was not a matter of taste:</p>
+<table>
+<thead>
+<tr>
+<th>function</th>
+<th>complexity</th>
+<th>coverage</th>
+<th>CRAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-text">performSamplePlayback</code></td>
+<td>15</td>
+<td>0%</td>
+<td>240</td>
+</tr>
+<tr>
+<td><code class="language-text">handleImportSelection</code></td>
+<td>7</td>
+<td>0%</td>
+<td>56</td>
+</tr>
+<tr>
+<td><code class="language-text">addToLibraryButtonState</code></td>
+<td>7</td>
+<td>0%</td>
+<td>56</td>
+</tr>
+<tr>
+<td><code class="language-text">handleImportResult</code></td>
+<td>4</td>
+<td>0%</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code class="language-text">runFeedLoop</code></td>
+<td>24</td>
+<td>98%</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<p>Look at the last two rows together. <code class="language-text">runFeedLoop</code> is six times more complex than <code class="language-text">handleImportResult</code> and carries the same risk score, because somebody tested it. That is the whole argument for measuring instead of eyeballing: the scariest-looking function in the module was not the problem.</p>
+<p>The formula is easier to feel as terrain. Keep coverage and complexity as the ground and let CRAP be the height, and the module becomes a landscape. A green plain wherever tests exist. A cliff wall where they do not.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/79f3fe5c513750a56af6a391689d9592/6bfbb/crap-surface.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABuvAAAbrwFeGpEcAAADVElEQVR42q2U/28URRiH+8f4ozFRQ2KikfCDVkVjsBEjBJMaQW2IKSVF0fbAKtQKiiLaUtPUWmNJGoq0emgvmJL0aolYClZt0x7H0bPQ43q3u3e3tze7s48z69H2Eqxf4iSzszv7zjOf931n3ir+51b1jy19/78DfSn/7J7unp74W6hf/le1lqJbRvrpCRfpesGcv+rfmgpLpRL5XI7Fi1NcPxtl/mSYWHsPv4XeYeqlenJzscAugCsPXHdlzGQywfsy0FOu2QpoJJNc2lTD5Yce5teNjzDzRDXxzY/z+7ZHsaPDZaAIFOo1etRCHMdZUagnhZpU0UKkFjBDtVgtz5Nv2479YR3Op/WIz3YiRrvQ0XQDoAyAutm2jWmaAWcZ6IoSQlm7qRjiq0bccBNeJIR3rgVvvBU5eRg514UvTFyVLCm9CmChUKgEeq6gJBTYmEbG2pGJbmTyc/zFE7B0CnLfIu1hpJdA8QKFOna6FYtFLMvCMIzVQBehgJ6I4zkR3NKI+h5Rm4xQEGcxS99xo3CS+dwAjsgphSpMbilYq9VplcsKdXMctYtps2hFSVg9XLP6iJu9zGa7+SV9nInUMcYWjnDm6ltMLIaDNdrt1S5XHBud9uR8kujVbsKx/UQSbZyJt/L1lYMMzB6gb/ptuqZaODrZwpvjTfTPDJLKZ3ClSz6frwQGB1W5YNkmHRff5dCFZg5f2Efbj/s4cD7E/h9C7B1tpn6kiRcjr7Mt/BpPnd7NplONdEyoENhFFR6xApQqwE6hyE/xn3l6sIEt3+xha/hVnlXjM0N7qDndyJMDu3msv4HqE7uo7mtgQ+8r1PS/wdzNa1hZE1slZhnolWPx/vdfcMehzdz9US13HX2Oez6uZV37C9zXsYMHOl9mfWcdGzp3sv54HQ+qPha/jMg7pNI3gyxXuJxTVy46M0nP6BAfDH/J3oFj7Og9yJauZjZ+sov739vOvW1qE9XvbN1K99gQbsEhk82STqeDxFQkRZYPqXBKQWFw1aiLQcbIkkxdZ3Yhwfj0JQYnztF/PoJpmAFEw/TVu21x8NTllgqmY2qYBkuZJbJKgfZAX3ypy5lKnk6CttU35dbh/svydbuyFADLG2mQj//vK/Zadc9fo9D+AbFhsjEZ6LcqAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="The CRAP formula as a 3D surface: a green plain at high coverage rising into a red cliff at zero coverage, with the Reader module&#39;s functions standing on it"
+        title=""
+        src="/static/79f3fe5c513750a56af6a391689d9592/fcda8/crap-surface.png"
+        srcset="/static/79f3fe5c513750a56af6a391689d9592/12f09/crap-surface.png 148w,
+/static/79f3fe5c513750a56af6a391689d9592/e4a3f/crap-surface.png 295w,
+/static/79f3fe5c513750a56af6a391689d9592/fcda8/crap-surface.png 590w,
+/static/79f3fe5c513750a56af6a391689d9592/efc66/crap-surface.png 885w,
+/static/79f3fe5c513750a56af6a391689d9592/c83ae/crap-surface.png 1180w,
+/static/79f3fe5c513750a56af6a391689d9592/6bfbb/crap-surface.png 1514w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>Every function stands exactly on this surface, because its score is fully determined by its two coordinates. <code class="language-text">performSamplePlayback</code> is halfway up the wall. <code class="language-text">runFeedLoop</code> lives out on the plain, where the terrain stays flat almost no matter how complex the code gets. There are two ways down from the wall: write simpler code, or write tests. The cubed term makes tests the fast way down.</p>
+<h2>Step 2: read the numbers correctly</h2>
+<p>Metrics are only objective if you know what they measure.</p>
+<p>Cyclomatic complexity counts paths. Cognitive complexity counts how hard those paths are to hold in your head: nesting, jumps, interleaved conditions. On a flat <code class="language-text">switch</code> they disagree violently, and cognitive is the one telling the truth. A 30-case <code class="language-text">switch</code> scores terribly on cyclomatic and reads fine.</p>
+<p>That distinction saved me from a fake finding later, and it is why the audit reports both.</p>
+<h2>Step 3: the refactor</h2>
+<p>The import and entitlement logic came out of a ViewModel and became a state machine: one <code class="language-text">State</code>, one <code class="language-text">Event</code> enum, one reducer, side effects as feedbacks.</p>
+<div class="gatsby-highlight" data-language="swift"><pre class="language-swift"><code class="language-swift"><span class="token comment">// before: behaviour spread across methods, mutating stored properties</span>
+<span class="token keyword">func</span> <span class="token function-definition function">handleImportSelection</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> result<span class="token punctuation">:</span> <span class="token class-name">Result</span><span class="token operator">&lt;</span><span class="token punctuation">[</span><span class="token constant">URL</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token class-name">Error</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function-definition function">handleImportResult</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> result<span class="token punctuation">:</span> <span class="token class-name">ImportResult</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+
+<span class="token comment">// after: one transition function, exhaustively switchable</span>
+<span class="token class-name">Reducer</span> <span class="token punctuation">{</span> state<span class="token punctuation">,</span> event <span class="token keyword">in</span>
+    <span class="token keyword">switch</span> event <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token keyword">let</span> <span class="token punctuation">.</span><span class="token function">pickedFiles</span><span class="token punctuation">(</span>urls<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">...</span>
+    <span class="token keyword">case</span> <span class="token keyword">let</span> <span class="token punctuation">.</span><span class="token function">importFinished</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>That shape is easy to test, which is the point. But “easy to test” is another adjective, so back to the audit.</p>
+<h2>Step 4: the same tool grades the result</h2>
+<p>I ran the audit over the refactor twice. Once right after the rewrite, and again after landing the five tests the first pass asked for.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>before</th>
+<th>after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>import + entitlement logic</td>
+<td><code class="language-text">handleImportSelection</code> CRAP 56, 0% covered</td>
+<td>reducer CRAP 32, 100% covered</td>
+</tr>
+<tr>
+<td>complexity of that logic</td>
+<td>7, spread over three methods</td>
+<td>32, in one reducer</td>
+</tr>
+<tr>
+<td><code class="language-text">addToLibraryButtonState</code></td>
+<td>CRAP 56, 0% covered</td>
+<td>CRAP 7.1, 87.5% covered</td>
+</tr>
+<tr>
+<td>mutation testing</td>
+<td><strong>0 killed, 11 survived</strong></td>
+<td><strong>12 killed, 3 survived</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The complexity row is the one I did not expect to publish. Complexity went up. One reducer scores 32 where the old methods scored 7 and 4, so by the naive reading the code got worse. This is where cognitive complexity earns its place in the report. The same reducer scores 20 cognitive, because it is a flat switch, not a nest of conditions. Meanwhile CRAP fell from 56 to 32, because coverage went to 100% and the cubed term vanished.</p>
+<p>The third row had no refactor in it at all. <code class="language-text">addToLibraryButtonState</code> kept every line of its production code. Tests alone took it from 0% to 87.5% covered and its CRAP from 56 to 7.1. The cubed term is not a theoretical opinion. It is an 8x discount for proving your code works. Nothing in the audited range now scores above the reducer’s 32.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/875e521fef256c3be409cc920d79d09f/555cf/crap-migration.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 77.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR42qVT2VLjMBDM//8cL1Bs+UhIgkN8StZ9h7acA7Yo9mG7xvLoaI3UM9owxjjn8zwTQuBQSuFjEG2M8fIrNlVVlWVZFEVZVbvtFt3dblfXNRwhhL5BZdwd7/1CttYaY9CmlNBP+Zcy4nd8HVwXbxYCekYHrYPS0droXPR+nb4D2yujYNpqF/z12PicMbo9m66FOUo9Y0GIv6430qnpP079eX86Fh9vNvMXsrfWce6FWAwOyFJeSbf4yupJzkTNPZ+IZNfIEAGHRKgoRFiN86DUPWa6pBBDO3aH9v29O9WHLeU3soZagpOmoW07d50cRzVNOIh1TioplUILTWxwzAgYVUw5cyVjkWVs2O9BZl0rhkFMo+EMgmZNV/kvxlswhVXMSuXNQzBDiRxwl5GPCxMtJ5MymgnOOENw551yuqX9W9+cSSeNfJD1OBRPT8Xz86Esj2W5fX3tmwYVgvyjKtasgnzsTi+7P8WxHjnJWmQyqkRBp5ze1VIuTDB9TvhaGy44HFs6LbR8FMmPwDTIzrnfajvdEFNM3/HDjkveH+MbSIhswbiSuKLJQP2v7+Efr+ryH/gEaHihYYB9cXYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Scatter chart of the Reader module: untested complex functions at 0% coverage before the refactor, the new reducer at 100% coverage after"
+        title=""
+        src="/static/875e521fef256c3be409cc920d79d09f/fcda8/crap-migration.png"
+        srcset="/static/875e521fef256c3be409cc920d79d09f/12f09/crap-migration.png 148w,
+/static/875e521fef256c3be409cc920d79d09f/e4a3f/crap-migration.png 295w,
+/static/875e521fef256c3be409cc920d79d09f/fcda8/crap-migration.png 590w,
+/static/875e521fef256c3be409cc920d79d09f/efc66/crap-migration.png 885w,
+/static/875e521fef256c3be409cc920d79d09f/c83ae/crap-migration.png 1180w,
+/static/875e521fef256c3be409cc920d79d09f/555cf/crap-migration.png 1960w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>The bottom row is the real result. Mutation testing edits the code and checks whether any test notices. Before, eleven mutants survived: I could swap “start the import” for “reopen the file picker” on the paid-tier gate and every test still passed. Those tests ran the code. They asserted nothing about it. After the refactor, the two runs threw fifteen mutants at the new code and the tests killed twelve.</p>
+<p>The three survivors are the referee refusing to sign off. Each one is a real gap in the new state machines: a retained starter offer that a second failure would drop, a stale dismissal event that could hide the wrong offer, and a button state no test reads. The report names the exact test that closes each one. That list is the next work item, not a footnote.</p>
+<p>That is the difference between code that <em>looks</em> tested and code that <em>is</em> tested, and it is not a difference any agent can talk its way into.</p>
+<h2>What these numbers do not say</h2>
+<p>They say the functions are simpler to reason about and the tests actually assert behaviour. They say nothing about whether a state machine was the right abstraction here. Metrics for that question exist, coupling and cohesion measures like instability or LCOM, but this pipeline does not compute them and I have not found a Swift tool for them I would trust. CRAP cannot see that your module boundary is wrong, and mutation testing is happy to prove that a bad design is thoroughly tested.</p>
+<p>The measurements also have edges worth admitting. Fifteen mutants across two runs is a budget, not exhaustive coverage. Everything ranked below the survivors was never mutated. And the app-level wiring has no test target, so the coordinators around these screens were never measured at all.</p>
+<p>The judgement stays human. What changed is that the judgement now starts from evidence instead of from an agent’s confident summary of its own work.</p>
+<p>Ask for the numbers. The agent will not doubt itself, and it does not have to. The tooling can do that for it.</p></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;align-items:center;margin-bottom:4.375rem"><img src="/static/profile-pic-b6e69452d87f69342835c523035e8b5c.jpg" alt="Serg Dort" style="margin-right:0.875rem;margin-bottom:0;width:3.5rem;height:3.5rem;border-radius:50%"/><p style="margin:0">Written by <a href="https://twitter.com/SergDort">Serg Dort</a>. Say one thing for him: he ships code.</p></div></footer></article><nav><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li></li><li></li></ul></nav></main><footer>© <!-- -->2026<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-123633819-1"></script><script>
+      
+      function gaOptout(){document.cookie=disableStr+'=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/',window[disableStr]=!0}var gaProperty='UA-123633819-1',disableStr='ga-disable-'+gaProperty;document.cookie.indexOf(disableStr+'=true')>-1&&(window[disableStr]=!0);
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-123633819-1', {"anonymize_ip":true,"send_page_view":false});
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/refactor-by-numbers/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-b0ba8eb420d8bdea7383.js\"],\"component---cache-caches-gatsby-plugin-offline-app-shell-js\":[\"/component---cache-caches-gatsby-plugin-offline-app-shell-js-b64fd46fe784f3830d25.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-0c727ae0233d457002f4.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-0945c5151f8079b45dc9.js\"],\"component---src-pages-tags-js\":[\"/component---src-pages-tags-js-c6f0f60e4177e6753c39.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-313e2728512e2c4d868c.js\"],\"component---src-templates-tag-js\":[\"/component---src-templates-tag-js-20a39127c784a2f18684.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="2f130c3e4ca391adeb4d";</script><script src="/webpack-runtime-9dca80bd01010d11c380.js" async></script><script src="/app-b0ba8eb420d8bdea7383.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

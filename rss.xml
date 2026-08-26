@@ -1,4 +1,230 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 10 Apr 2026 13:52:30 GMT</lastBuildDate><item><title><![CDATA[Building "Grill Me" Skills: From Fred Brooks to AI-Powered Design Interrogation]]></title><description><![CDATA[I came across a video by Matt Pocock where he described a skill he calls “grill me” — a simple but powerful concept: interview me…]]></description><link>https://sergdort.github.io/grill-me-skills/</link><guid isPermaLink="false">https://sergdort.github.io/grill-me-skills/</guid><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-resp-iframe-wrapper&quot; style=&quot;padding-bottom: 56.25%; position: relative; height: 0; overflow: hidden; margin-bottom: 1.0725rem&quot; &gt; &lt;iframe src=&quot;https://www.youtube.com/embed/EJyuu6zlQCg&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; style=&quot; position: absolute; top: 0; left: 0; width: 100%; height: 100%; &quot;&gt;&lt;/iframe&gt; &lt;/div&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 26 Aug 2026 14:50:49 GMT</lastBuildDate><item><title><![CDATA[Refactor by Numbers]]></title><description><![CDATA[Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me…]]></description><link>https://sergdort.github.io/refactor-by-numbers/</link><guid isPermaLink="false">https://sergdort.github.io/refactor-by-numbers/</guid><pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8265cd40778e20e648ddd1df29826f8c/5b6ee/cover_image.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.08108108108109%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACM0lEQVR42k2Ry2sTQRjA968RhNI/Qb14FU8WxYMPPAoiKvYmnmzASB/2YS1KhBZNKUlTi6VNa9Mk29RW224S1jxN3c1udmd2ZmdnH6ke/HZ7EX4MM9/M73swArM0wCG6YxsO6Tk0wtI5NV0beQx7juXzkIAToO/Rvmef+iFCqNEeMxRbaVGk2ajLqcEt3QPT+c90yRl9AOTIFxjWfZ/+Ku7k79zCm6tIlhykgeYDnEQmrCSMRCkiOSwOCJahcJceZdKJgUE19sxaW0R1CXoGOWAocCk4fZeCHJxpLo3kcCNYpso43n43N3HufH7oqpl4RXNJV6kEHgs4BSFqHkEK6LMfjQqmH45ABbPboQxlRl6MDgwuXb5UfnrXW504ldJe99B3zL4LT5lNexgpFlIp0XzX+hMwj+PAowI2FIy1T8PDYxcupq5d2b0/9HvqgboaN6Qlo5M3jSohJ9wxTHQCJoCxqmjNvwEPZ9a7nVatMvfo8esb1+fv3fz85LY48fDb4vOD3Mzu3oficVKU00V55Xs7K9Y3dhvZo06+VN+STko6ags1uZzbXH8/NpqIxz6OjaTexlYWXmZS8eX18VRhOlWaTYrT84XJBXFmKhufzMZnv44ndt6Ufm5ZRA0rt5tyTZYa9UqzWW3Uy61mpdmWaq3DamNfbh9U23vHDXFf3i6UN3LHa1s/vpQbB4z2uG0KjPRsS6dYt7HOrJ5DDPgnh5oQIabG4Gib8AaAeHhFAMOhIf8ARUgvIxUyFvgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cover_image&quot;
+        title=&quot;&quot;
+        src=&quot;/static/8265cd40778e20e648ddd1df29826f8c/fcda8/cover_image.png&quot;
+        srcset=&quot;/static/8265cd40778e20e648ddd1df29826f8c/12f09/cover_image.png 148w,
+/static/8265cd40778e20e648ddd1df29826f8c/e4a3f/cover_image.png 295w,
+/static/8265cd40778e20e648ddd1df29826f8c/fcda8/cover_image.png 590w,
+/static/8265cd40778e20e648ddd1df29826f8c/efc66/cover_image.png 885w,
+/static/8265cd40778e20e648ddd1df29826f8c/c83ae/cover_image.png 1180w,
+/static/8265cd40778e20e648ddd1df29826f8c/5b6ee/cover_image.png 1672w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about.&lt;/p&gt;
+&lt;p&gt;Do you believe it?&lt;/p&gt;
+&lt;p&gt;Mine told me exactly that last week, and I had no way to tell. The agent that wrote the code is the same agent grading it. It has no memory of the bug it just introduced, no fear of the pager, and no doubt. Doubt is not part of next-token prediction. Ask an agent whether its own code is good and you get a confident yes, because a confident yes is what that sentence usually looks like.&lt;/p&gt;
+&lt;p&gt;So I stopped asking. I made the tooling answer instead.&lt;/p&gt;
+&lt;h2&gt;The rule: no adjectives, only measurements&lt;/h2&gt;
+&lt;p&gt;I run a quality audit over a module or a commit range. It is a manual command, not part of the agent loop, and it is report-only. It never fixes anything. It runs three passes and joins them:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;scope: a module path, or a commit range base..HEAD
+   │
+   ├─ complexity review     cyclomatic + cognitive, per function
+   ├─ coverage + CRAP join  xcresult coverage × complexity
+   └─ mutation testing      edit the code, see if a test screams
+   │
+   ▼
+report only. the agent triages, a human approves&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The command hands the work to a separate auditor subagent, not the agent that wrote the code. That separation is the whole trick. An implementation agent is trying to finish a task, and “the code is fine” is the shortest path to finished. The auditor has no task to finish and no feature to ship. It runs the tools, writes down what they say, and stops.&lt;/p&gt;
+&lt;p&gt;The other important property is that the audit both selects the work and grades it. The same tool that picked the targets decides afterwards whether they improved. The agent never gets to be its own referee.&lt;/p&gt;
+&lt;h2&gt;Step 1: point it at the module, read the ranking&lt;/h2&gt;
+&lt;p&gt;I pointed it at Oratio’s Reader module. It measured 430 non-UI functions, matched 426 of them to coverage data, and sorted them by CRAP.&lt;/p&gt;
+&lt;p&gt;CRAP stands for Change Risk Anti-Patterns. It is one of the few code metrics with a definition you can argue with mathematically rather than aesthetically:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;CRAP = complexity² × (1 − coverage)³ + complexity&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Read that formula for a second, because it encodes an opinion. Complexity is squared. The uncovered fraction is &lt;em&gt;cubed&lt;/em&gt;. Full coverage collapses the whole first term to zero, and CRAP decays to plain complexity. Complex code is not the problem. Complex code nobody tested is the problem.&lt;/p&gt;
+&lt;p&gt;The ranking was not a matter of taste:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;th&gt;complexity&lt;/th&gt;
+&lt;th&gt;coverage&lt;/th&gt;
+&lt;th&gt;CRAP&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;performSamplePlayback&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;0%&lt;/td&gt;
+&lt;td&gt;240&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;handleImportSelection&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;0%&lt;/td&gt;
+&lt;td&gt;56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;addToLibraryButtonState&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;0%&lt;/td&gt;
+&lt;td&gt;56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;handleImportResult&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;0%&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;runFeedLoop&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;24&lt;/td&gt;
+&lt;td&gt;98%&lt;/td&gt;
+&lt;td&gt;24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Look at the last two rows together. &lt;code class=&quot;language-text&quot;&gt;runFeedLoop&lt;/code&gt; is six times more complex than &lt;code class=&quot;language-text&quot;&gt;handleImportResult&lt;/code&gt; and carries the same risk score, because somebody tested it. That is the whole argument for measuring instead of eyeballing: the scariest-looking function in the module was not the problem.&lt;/p&gt;
+&lt;p&gt;The formula is easier to feel as terrain. Keep coverage and complexity as the ground and let CRAP be the height, and the module becomes a landscape. A green plain wherever tests exist. A cliff wall where they do not.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/79f3fe5c513750a56af6a391689d9592/6bfbb/crap-surface.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABuvAAAbrwFeGpEcAAADVElEQVR42q2U/28URRiH+8f4ozFRQ2KikfCDVkVjsBEjBJMaQW2IKSVF0fbAKtQKiiLaUtPUWmNJGoq0emgvmJL0aolYClZt0x7H0bPQ43q3u3e3tze7s48z69H2Eqxf4iSzszv7zjOf931n3ir+51b1jy19/78DfSn/7J7unp74W6hf/le1lqJbRvrpCRfpesGcv+rfmgpLpRL5XI7Fi1NcPxtl/mSYWHsPv4XeYeqlenJzscAugCsPXHdlzGQywfsy0FOu2QpoJJNc2lTD5Yce5teNjzDzRDXxzY/z+7ZHsaPDZaAIFOo1etRCHMdZUagnhZpU0UKkFjBDtVgtz5Nv2479YR3Op/WIz3YiRrvQ0XQDoAyAutm2jWmaAWcZ6IoSQlm7qRjiq0bccBNeJIR3rgVvvBU5eRg514UvTFyVLCm9CmChUKgEeq6gJBTYmEbG2pGJbmTyc/zFE7B0CnLfIu1hpJdA8QKFOna6FYtFLMvCMIzVQBehgJ6I4zkR3NKI+h5Rm4xQEGcxS99xo3CS+dwAjsgphSpMbilYq9VplcsKdXMctYtps2hFSVg9XLP6iJu9zGa7+SV9nInUMcYWjnDm6ltMLIaDNdrt1S5XHBud9uR8kujVbsKx/UQSbZyJt/L1lYMMzB6gb/ptuqZaODrZwpvjTfTPDJLKZ3ClSz6frwQGB1W5YNkmHRff5dCFZg5f2Efbj/s4cD7E/h9C7B1tpn6kiRcjr7Mt/BpPnd7NplONdEyoENhFFR6xApQqwE6hyE/xn3l6sIEt3+xha/hVnlXjM0N7qDndyJMDu3msv4HqE7uo7mtgQ+8r1PS/wdzNa1hZE1slZhnolWPx/vdfcMehzdz9US13HX2Oez6uZV37C9zXsYMHOl9mfWcdGzp3sv54HQ+qPha/jMg7pNI3gyxXuJxTVy46M0nP6BAfDH/J3oFj7Og9yJauZjZ+sov739vOvW1qE9XvbN1K99gQbsEhk82STqeDxFQkRZYPqXBKQWFw1aiLQcbIkkxdZ3Yhwfj0JQYnztF/PoJpmAFEw/TVu21x8NTllgqmY2qYBkuZJbJKgfZAX3ypy5lKnk6CttU35dbh/svydbuyFADLG2mQj//vK/Zadc9fo9D+AbFhsjEZ6LcqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;The CRAP formula as a 3D surface: a green plain at high coverage rising into a red cliff at zero coverage, with the Reader module&amp;#39;s functions standing on it&quot;
+        title=&quot;&quot;
+        src=&quot;/static/79f3fe5c513750a56af6a391689d9592/fcda8/crap-surface.png&quot;
+        srcset=&quot;/static/79f3fe5c513750a56af6a391689d9592/12f09/crap-surface.png 148w,
+/static/79f3fe5c513750a56af6a391689d9592/e4a3f/crap-surface.png 295w,
+/static/79f3fe5c513750a56af6a391689d9592/fcda8/crap-surface.png 590w,
+/static/79f3fe5c513750a56af6a391689d9592/efc66/crap-surface.png 885w,
+/static/79f3fe5c513750a56af6a391689d9592/c83ae/crap-surface.png 1180w,
+/static/79f3fe5c513750a56af6a391689d9592/6bfbb/crap-surface.png 1514w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Every function stands exactly on this surface, because its score is fully determined by its two coordinates. &lt;code class=&quot;language-text&quot;&gt;performSamplePlayback&lt;/code&gt; is halfway up the wall. &lt;code class=&quot;language-text&quot;&gt;runFeedLoop&lt;/code&gt; lives out on the plain, where the terrain stays flat almost no matter how complex the code gets. There are two ways down from the wall: write simpler code, or write tests. The cubed term makes tests the fast way down.&lt;/p&gt;
+&lt;h2&gt;Step 2: read the numbers correctly&lt;/h2&gt;
+&lt;p&gt;Metrics are only objective if you know what they measure.&lt;/p&gt;
+&lt;p&gt;Cyclomatic complexity counts paths. Cognitive complexity counts how hard those paths are to hold in your head: nesting, jumps, interleaved conditions. On a flat &lt;code class=&quot;language-text&quot;&gt;switch&lt;/code&gt; they disagree violently, and cognitive is the one telling the truth. A 30-case &lt;code class=&quot;language-text&quot;&gt;switch&lt;/code&gt; scores terribly on cyclomatic and reads fine.&lt;/p&gt;
+&lt;p&gt;That distinction saved me from a fake finding later, and it is why the audit reports both.&lt;/p&gt;
+&lt;h2&gt;Step 3: the refactor&lt;/h2&gt;
+&lt;p&gt;The import and entitlement logic came out of a ViewModel and became a state machine: one &lt;code class=&quot;language-text&quot;&gt;State&lt;/code&gt;, one &lt;code class=&quot;language-text&quot;&gt;Event&lt;/code&gt; enum, one reducer, side effects as feedbacks.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;swift&quot;&gt;&lt;pre class=&quot;language-swift&quot;&gt;&lt;code class=&quot;language-swift&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// before: behaviour spread across methods, mutating stored properties&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;handleImportSelection&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token omit keyword&quot;&gt;_&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;handleImportResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token omit keyword&quot;&gt;_&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ImportResult&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// after: one transition function, exhaustively switchable&lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;Reducer&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; state&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; event &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;switch&lt;/span&gt; event &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pickedFiles&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;urls&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;importFinished&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That shape is easy to test, which is the point. But “easy to test” is another adjective, so back to the audit.&lt;/p&gt;
+&lt;h2&gt;Step 4: the same tool grades the result&lt;/h2&gt;
+&lt;p&gt;I ran the audit over the refactor twice. Once right after the rewrite, and again after landing the five tests the first pass asked for.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;before&lt;/th&gt;
+&lt;th&gt;after&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;import + entitlement logic&lt;/td&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;handleImportSelection&lt;/code&gt; CRAP 56, 0% covered&lt;/td&gt;
+&lt;td&gt;reducer CRAP 32, 100% covered&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;complexity of that logic&lt;/td&gt;
+&lt;td&gt;7, spread over three methods&lt;/td&gt;
+&lt;td&gt;32, in one reducer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code class=&quot;language-text&quot;&gt;addToLibraryButtonState&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;CRAP 56, 0% covered&lt;/td&gt;
+&lt;td&gt;CRAP 7.1, 87.5% covered&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mutation testing&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0 killed, 11 survived&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;12 killed, 3 survived&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The complexity row is the one I did not expect to publish. Complexity went up. One reducer scores 32 where the old methods scored 7 and 4, so by the naive reading the code got worse. This is where cognitive complexity earns its place in the report. The same reducer scores 20 cognitive, because it is a flat switch, not a nest of conditions. Meanwhile CRAP fell from 56 to 32, because coverage went to 100% and the cubed term vanished.&lt;/p&gt;
+&lt;p&gt;The third row had no refactor in it at all. &lt;code class=&quot;language-text&quot;&gt;addToLibraryButtonState&lt;/code&gt; kept every line of its production code. Tests alone took it from 0% to 87.5% covered and its CRAP from 56 to 7.1. The cubed term is not a theoretical opinion. It is an 8x discount for proving your code works. Nothing in the audited range now scores above the reducer’s 32.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/875e521fef256c3be409cc920d79d09f/555cf/crap-migration.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 77.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR42qVT2VLjMBDM//8cL1Bs+UhIgkN8StZ9h7acA7Yo9mG7xvLoaI3UM9owxjjn8zwTQuBQSuFjEG2M8fIrNlVVlWVZFEVZVbvtFt3dblfXNRwhhL5BZdwd7/1CttYaY9CmlNBP+Zcy4nd8HVwXbxYCekYHrYPS0droXPR+nb4D2yujYNpqF/z12PicMbo9m66FOUo9Y0GIv6430qnpP079eX86Fh9vNvMXsrfWce6FWAwOyFJeSbf4yupJzkTNPZ+IZNfIEAGHRKgoRFiN86DUPWa6pBBDO3aH9v29O9WHLeU3soZagpOmoW07d50cRzVNOIh1TioplUILTWxwzAgYVUw5cyVjkWVs2O9BZl0rhkFMo+EMgmZNV/kvxlswhVXMSuXNQzBDiRxwl5GPCxMtJ5MymgnOOENw551yuqX9W9+cSSeNfJD1OBRPT8Xz86Esj2W5fX3tmwYVgvyjKtasgnzsTi+7P8WxHjnJWmQyqkRBp5ze1VIuTDB9TvhaGy44HFs6LbR8FMmPwDTIzrnfajvdEFNM3/HDjkveH+MbSIhswbiSuKLJQP2v7+Efr+ryH/gEaHihYYB9cXYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Scatter chart of the Reader module: untested complex functions at 0% coverage before the refactor, the new reducer at 100% coverage after&quot;
+        title=&quot;&quot;
+        src=&quot;/static/875e521fef256c3be409cc920d79d09f/fcda8/crap-migration.png&quot;
+        srcset=&quot;/static/875e521fef256c3be409cc920d79d09f/12f09/crap-migration.png 148w,
+/static/875e521fef256c3be409cc920d79d09f/e4a3f/crap-migration.png 295w,
+/static/875e521fef256c3be409cc920d79d09f/fcda8/crap-migration.png 590w,
+/static/875e521fef256c3be409cc920d79d09f/efc66/crap-migration.png 885w,
+/static/875e521fef256c3be409cc920d79d09f/c83ae/crap-migration.png 1180w,
+/static/875e521fef256c3be409cc920d79d09f/555cf/crap-migration.png 1960w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The bottom row is the real result. Mutation testing edits the code and checks whether any test notices. Before, eleven mutants survived: I could swap “start the import” for “reopen the file picker” on the paid-tier gate and every test still passed. Those tests ran the code. They asserted nothing about it. After the refactor, the two runs threw fifteen mutants at the new code and the tests killed twelve.&lt;/p&gt;
+&lt;p&gt;The three survivors are the referee refusing to sign off. Each one is a real gap in the new state machines: a retained starter offer that a second failure would drop, a stale dismissal event that could hide the wrong offer, and a button state no test reads. The report names the exact test that closes each one. That list is the next work item, not a footnote.&lt;/p&gt;
+&lt;p&gt;That is the difference between code that &lt;em&gt;looks&lt;/em&gt; tested and code that &lt;em&gt;is&lt;/em&gt; tested, and it is not a difference any agent can talk its way into.&lt;/p&gt;
+&lt;h2&gt;What these numbers do not say&lt;/h2&gt;
+&lt;p&gt;They say the functions are simpler to reason about and the tests actually assert behaviour. They say nothing about whether a state machine was the right abstraction here. Metrics for that question exist, coupling and cohesion measures like instability or LCOM, but this pipeline does not compute them and I have not found a Swift tool for them I would trust. CRAP cannot see that your module boundary is wrong, and mutation testing is happy to prove that a bad design is thoroughly tested.&lt;/p&gt;
+&lt;p&gt;The measurements also have edges worth admitting. Fifteen mutants across two runs is a budget, not exhaustive coverage. Everything ranked below the survivors was never mutated. And the app-level wiring has no test target, so the coordinators around these screens were never measured at all.&lt;/p&gt;
+&lt;p&gt;The judgement stays human. What changed is that the judgement now starts from evidence instead of from an agent’s confident summary of its own work.&lt;/p&gt;
+&lt;p&gt;Ask for the numbers. The agent will not doubt itself, and it does not have to. The tooling can do that for it.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Building "Grill Me" Skills: From Fred Brooks to AI-Powered Design Interrogation]]></title><description><![CDATA[I came across a video by Matt Pocock where he described a skill he calls “grill me” — a simple but powerful concept: interview me…]]></description><link>https://sergdort.github.io/grill-me-skills/</link><guid isPermaLink="false">https://sergdort.github.io/grill-me-skills/</guid><pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;div class=&quot;gatsby-resp-iframe-wrapper&quot; style=&quot;padding-bottom: 56.25%; position: relative; height: 0; overflow: hidden; margin-bottom: 1.0725rem&quot; &gt; &lt;iframe src=&quot;https://www.youtube.com/embed/EJyuu6zlQCg&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; style=&quot; position: absolute; top: 0; left: 0; width: 100%; height: 100%; &quot;&gt;&lt;/iframe&gt; &lt;/div&gt;
 &lt;p&gt;I came across a video by Matt Pocock where he described a skill he calls “grill me” — a simple but powerful concept: &lt;em&gt;interview me relentlessly about every aspect of this plan until we reach a shared understanding&lt;/em&gt;. I found it immediately compelling.&lt;/p&gt;
 &lt;p&gt;In the video, Matt mentions Fred Brooks’ &lt;em&gt;The Design of Design&lt;/em&gt; as the inspiration. I hadn’t read it, so I asked Claude to summarise the key concepts and show me how they could apply to building better skills. The two things collided, and I ended up spending an evening turning that seed into something more structured. This is a writeup of what came out of that conversation and why I think this pattern is worth stealing.&lt;/p&gt;
 &lt;h2&gt;What Fred Brooks Gets Right&lt;/h2&gt;
