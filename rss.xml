@@ -1,4 +1,192 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 26 Aug 2026 15:11:48 GMT</lastBuildDate><item><title><![CDATA[Refactor by Numbers]]></title><description><![CDATA[Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me…]]></description><link>https://sergdort.github.io/refactor-by-numbers/</link><guid isPermaLink="false">https://sergdort.github.io/refactor-by-numbers/</guid><pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Serg Dort's Blog RSS Feed]]></title><description><![CDATA[A developer's blog]]></description><link>https://sergdort.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 21 Sep 2026 13:35:39 GMT</lastBuildDate><item><title><![CDATA[Making Xcode and agents share incremental builds]]></title><description><![CDATA[I’ve been going back and forth between Xcode and an AI agent while working on my iOS app. The agent builds through XcodeBuildMCP, then I…]]></description><link>https://sergdort.github.io/xcode-agent-incremental-builds/</link><guid isPermaLink="false">https://sergdort.github.io/xcode-agent-incremental-builds/</guid><pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I’ve been going back and forth between Xcode and an AI agent while working on my iOS app. The agent builds through &lt;a href=&quot;https://github.com/getsentry/XcodeBuildMCP&quot;&gt;XcodeBuildMCP&lt;/a&gt;, then I switch to Xcode to inspect or debug the result. What annoyed me was watching Xcode repeat build work the agent had just finished, even though no code had changed.&lt;/p&gt;
+&lt;p&gt;At one point, an unchanged handoff took around 100 seconds. Getting both builds to succeed was only part of the problem. I wanted them to reuse the same outputs.&lt;/p&gt;
+&lt;p&gt;We got there by sharing build locations and caches. We also found a way to eliminate the remaining relinking, but I decided to leave that workaround out of our setup. The maintenance cost was hard to justify for a few seconds per switch.&lt;/p&gt;
+&lt;h2&gt;Why bother&lt;/h2&gt;
+&lt;p&gt;I still use Xcode while working with agents. I want to inspect a change, use the debugger, then let the agent continue. Xcode’s native MCP can ask the IDE to build, while XcodeBuildMCP provides a separate command-line build route alongside simulator and debugging tools.&lt;/p&gt;
+&lt;p&gt;Having to stick to one route to preserve fast builds is annoying. Small edits become expensive when each switch repeats build work. Cleaning the build folder might hide a problem, but it also throws away the incremental state I want to keep.&lt;/p&gt;
+&lt;h2&gt;Give both builds the same locations&lt;/h2&gt;
+&lt;p&gt;We started by aligning DerivedData, products, intermediates, and compiler caches within the same worktree.&lt;/p&gt;
+&lt;p&gt;In Xcode’s Locations settings, I selected Relative Derived Data with the path &lt;code class=&quot;language-text&quot;&gt;DerivedData&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/918ea354949f0747a1d742abb6fcc6e5/e92cd/derived_data_location.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 69.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAABbklEQVR42o2U0W6CQBBF+f8vUptGEUEW1KQ8ypPRBEMBaWygROiUO3ToWrXF5ITdYe7dmd1Fw/eeyVRP5Hl+iyKlFK1WK1oulwzGQ1iv14zhOBC6rZnHuK5Li8WCzXzf7+P/gXxoDYgdx+aJGNq2zQmodgjwmE6n/GwrdAgo5fYr4QWMRYCxcM8QcXhAqxmqK0NUKXTJznfVP22KoXTGLSMJAmkZY5Q/m834CUzT7CvQEc2VoVSorxjHMZ1OJ8qyjEmSpCdNu1ie5xQEAc3nc+5CDtKQlWUvYHy5XFphykCIOajrms7nM8WvKdXNJ4XhljuRLtkQzp07Ku2Mq6pioVAUBfNRlpRkb/SyjSh/r9gQFeoHZyCAfcLTsix+2TQN/fUrW2PkhGHIGn27DExwgQEC2I/D4UDH45GiKLoB8d1uR/v9njabDeffGOpgLyaTCY1Go4eMx2MGp6/fUW556Kf1iN+X/MYQrQ/9Q7jHF6pUvyzHXlp2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Xcode Derived Data location set to Relative with the path DerivedData&quot;
+        title=&quot;&quot;
+        src=&quot;/static/918ea354949f0747a1d742abb6fcc6e5/fcda8/derived_data_location.png&quot;
+        srcset=&quot;/static/918ea354949f0747a1d742abb6fcc6e5/12f09/derived_data_location.png 148w,
+/static/918ea354949f0747a1d742abb6fcc6e5/e4a3f/derived_data_location.png 295w,
+/static/918ea354949f0747a1d742abb6fcc6e5/fcda8/derived_data_location.png 590w,
+/static/918ea354949f0747a1d742abb6fcc6e5/efc66/derived_data_location.png 885w,
+/static/918ea354949f0747a1d742abb6fcc6e5/c83ae/derived_data_location.png 1180w,
+/static/918ea354949f0747a1d742abb6fcc6e5/e92cd/derived_data_location.png 1778w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For custom build locations, I selected Relative to Workspace and used &lt;code class=&quot;language-text&quot;&gt;Build/Products&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;Build/Intermediates.noindex&lt;/code&gt;. The workspace inherits those settings. I reopened it after the change so it would stop using the old package checkout paths.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/49db34b8f0e5f7385599dc64a45e9a73/7321b/build_location.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.21621621621621%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAABhUlEQVR42pVSu07DQBDM//8BJR0NoqenQFAQpIhgJIMdR37ht89ve/CcucixSCJWGu3pHrOzO7cyDANRFCEMQ8RxjLquL6Np0MzAvb7vYZomVq7rIkkS6LoOz/PAGIYB/wl1n1ySkFFVlazUdZ3MSwUq8/wUoeM4WFHVMPSS3R3XzJTPS8wESdRanS3BsG17Imx6IEkz5HmONE0lciGQZhlELlCWpeyAmYRnFX77HswE2Ds+ikLIOZqjUZ5rwzK/sLd2csYsQuPOtXxQyGjbVj6M4whekGBrBngzAjhhjmFU1bbdkaN/tSxNoUwGFbDC3rJg2R4e1xqeNzredSqMEQSBJFOKThIqhfyPvu9PjtYVqlKgrkoIMc02G+dJhUuj5oQHlxliNIGDZ+t8OOUJfEzMz1iYuR+52u5XoTP7h6yiLipH1b9TSi597COFvRx8e4BSorD8Lor+/gO4eR1wtwU+dyOhpmlSCVumKqIoisN6vjeHGNFUBW5fClw9CFw/1VhvNPwAUenwPvwmIrUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Xcode custom build locations set to Build/Products and Build/Intermediates.noindex, relative to the workspace&quot;
+        title=&quot;&quot;
+        src=&quot;/static/49db34b8f0e5f7385599dc64a45e9a73/fcda8/build_location.png&quot;
+        srcset=&quot;/static/49db34b8f0e5f7385599dc64a45e9a73/12f09/build_location.png 148w,
+/static/49db34b8f0e5f7385599dc64a45e9a73/e4a3f/build_location.png 295w,
+/static/49db34b8f0e5f7385599dc64a45e9a73/fcda8/build_location.png 590w,
+/static/49db34b8f0e5f7385599dc64a45e9a73/efc66/build_location.png 885w,
+/static/49db34b8f0e5f7385599dc64a45e9a73/c83ae/build_location.png 1180w,
+/static/49db34b8f0e5f7385599dc64a45e9a73/7321b/build_location.png 1184w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I left Compilation Cache on Automatic with its location set to Default. Xcode shows the resulting path as &lt;code class=&quot;language-text&quot;&gt;DerivedData/CompilationCache.noindex&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9386e9a7e41332f14f23a5e038ea33d9/f1c64/cache_location.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.94594594594595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABMUlEQVR42o2S2Y6CQBBF+f9vEhAEBQV9IAGjvoIYUGRrRlxqvDVpEqOTWMnpgqZyqU2ZTqekqippmsbgGei6TrZtE75/wnXdAcdxOHY2m5GCIwgCiqKIwjB8Yb1e02azYbbbLbPb7fh+Pp+/iEqU1WpFj8eD7vc7Xa9Xut1u/A6Dl1wuFwYxMM/zaDwec2amadJkMvnLcLlcskiWZczpdKK6rumn60gIQeLpuydpmlIcx5TnOQv6vsdCKBdCkkHweDwyTdOwYFVV7EHTCkqShEvf7/dDhoZhDILoKwv6vs/ltm1L53Px5My+LEumKAqqG0GHw4EzxB0MiUBksVhwPyUs+K2hEvxYClqW9TYcBUff9xwsh/If6ClKxnAghIG8CaIP2LvRaPQV2E/EY8Kf1uYXVQiD03ZdBFUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Xcode compilation cache set to Automatic at the default location DerivedData/CompilationCache.noindex&quot;
+        title=&quot;&quot;
+        src=&quot;/static/9386e9a7e41332f14f23a5e038ea33d9/fcda8/cache_location.png&quot;
+        srcset=&quot;/static/9386e9a7e41332f14f23a5e038ea33d9/12f09/cache_location.png 148w,
+/static/9386e9a7e41332f14f23a5e038ea33d9/e4a3f/cache_location.png 295w,
+/static/9386e9a7e41332f14f23a5e038ea33d9/fcda8/cache_location.png 590w,
+/static/9386e9a7e41332f14f23a5e038ea33d9/efc66/cache_location.png 885w,
+/static/9386e9a7e41332f14f23a5e038ea33d9/c83ae/cache_location.png 1180w,
+/static/9386e9a7e41332f14f23a5e038ea33d9/f1c64/cache_location.png 1390w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For my &lt;code class=&quot;language-text&quot;&gt;Oratio.xcworkspace&lt;/code&gt;, Xcode puts the workspace data in &lt;code class=&quot;language-text&quot;&gt;DerivedData/Oratio&lt;/code&gt;, with compiler and module caches beside it. The corresponding &lt;code class=&quot;language-text&quot;&gt;.xcodebuildmcp/config.yaml&lt;/code&gt; settings are:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;schemaVersion&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;sessionDefaults&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;workspacePath&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Oratio.xcworkspace
+  &lt;span class=&quot;token key atrule&quot;&gt;derivedDataPath&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; DerivedData/Oratio
+  &lt;span class=&quot;token key atrule&quot;&gt;extraArgs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; COMPILATION_CACHE_CAS_PATH=$(XCODEBUILDMCP_CWD)/DerivedData/CompilationCache.noindex
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; MODULE_CACHE_DIR=$(XCODEBUILDMCP_CWD)/DerivedData/ModuleCache.noindex
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; SDK_EXPLICIT_MODULES_OUTPUT_PATH=$(XCODEBUILDMCP_CWD)/DerivedData/SDKExplicitPrecompiledModules
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; CLANG_MODULES_BUILD_SESSION_FILE=$(XCODEBUILDMCP_CWD)/DerivedData/ModuleCache.noindex/Session.modulevalidation
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; SDK_STAT_CACHE_DIR=$(XCODEBUILDMCP_CWD)/DerivedData&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is the cache-related part of the config. Scheme and destination still need to match. The MCP launch command sets &lt;code class=&quot;language-text&quot;&gt;XCODEBUILDMCP_CWD&lt;/code&gt; to the absolute worktree root. Each worktree keeps separate outputs, and builds within one worktree run sequentially.&lt;/p&gt;
+&lt;h2&gt;Why was it still linking?&lt;/h2&gt;
+&lt;p&gt;Matching the locations removed compilation work, but switching tools still triggered linking.&lt;/p&gt;
+&lt;p&gt;The remaining difference was &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Swift Build includes the task’s environment when computing its signature. Its &lt;a href=&quot;https://github.com/swiftlang/swift-build/blob/8fe25979d959a4fac905ef45c71c90c92d47a953/Sources/SWBTaskExecution/TaskActions/TaskAction.swift#L65-L79&quot;&gt;signature implementation&lt;/a&gt; shows this explicitly. The linker arguments can stay identical while a changed environment makes the build system run the task again.&lt;/p&gt;
+&lt;p&gt;We tested this by appending an unused directory to the MCP server’s &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;. No source, dependency pins, or build settings changed. These checks used Xcode 27.2 and XcodeBuildMCP 2.7.0, targeting the same iOS simulator:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Build, in order&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Compile tasks&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Link tasks&lt;/th&gt;
+&lt;th align=&quot;right&quot;&gt;Code-sign tasks&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Native Xcode baseline&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MCP with changed &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;84&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Repeat with that same &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MCP with Xcode’s linker environment restored&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;84&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Native Xcode again&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;td align=&quot;right&quot;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For the sampled linker task, only &lt;code class=&quot;language-text&quot;&gt;env.PATH&lt;/code&gt; and the signature changed. Arguments and inputs stayed identical. Restoring the environment caused one more relink, then the native build finished in 4.9 seconds without compiling or linking.&lt;/p&gt;
+&lt;h2&gt;How we verified the environment&lt;/h2&gt;
+&lt;p&gt;During the experiment, we set the server’s &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin&lt;/code&gt;. That reproduced the native linker environment on this machine. It is not a universal Xcode default, and we have since removed the override.&lt;/p&gt;
+&lt;p&gt;The reliable evidence is the native build’s &lt;code class=&quot;language-text&quot;&gt;manifest.json&lt;/code&gt;. With our layout, manifests live under &lt;code class=&quot;language-text&quot;&gt;Build/Intermediates.noindex/XCBuildData/*.xcbuilddata/&lt;/code&gt;. Use the manifest associated with the native build and check the adjacent &lt;code class=&quot;language-text&quot;&gt;build-request.json&lt;/code&gt; for the configuration and destination. Don’t blindly choose the newest file, because MCP writes there too and Xcode can reuse an older description.&lt;/p&gt;
+&lt;p&gt;This extracts the full linker &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt; and refuses to guess if tasks have different values:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;jq &lt;span class=&quot;token parameter variable&quot;&gt;-er&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;
+  [.commands[]
+   | select((.description // &quot;&quot;) | startswith(&quot;Ld &quot;))
+   | .env.PATH // empty]
+  | unique
+  | if length == 1 then .[0]
+    else error(&quot;Inspect the different linker environments&quot;) end
+&apos;&lt;/span&gt; /path/to/native/manifest.json&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The result includes Xcode’s toolchain directories. We tested passing that full value as the MCP server’s process &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;. All 84 linker task records then matched native Xcode exactly, including their signatures. Changing a &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt; build setting had not achieved that.&lt;/p&gt;
+&lt;p&gt;For anyone investigating the same difference, that gives you a value to test in the MCP client’s server environment. The server needs a restart to pick it up. An absolute MCP executable path avoids problems if the replacement &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt; omits Homebrew. The extracted value needs checking again after Xcode or toolchain changes, and the manifest format is an implementation detail too.&lt;/p&gt;
+&lt;h2&gt;Why we left PATH alone&lt;/h2&gt;
+&lt;p&gt;Full parity was possible. Matching the task environments let us switch without compiling or linking anything. But mimicking Xcode’s environment looks like a hack because it depends on details outside our control. Xcode or its build system could change, and we might not notice that our copied value had become stale.&lt;/p&gt;
+&lt;p&gt;The task counts made the workaround look more valuable than the timings did. In a later comparison, the MCP build took 26.2 seconds with a matching &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt; and 28.6 seconds with its inherited &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;. The measured difference was 2.4 seconds, despite 84 extra link tasks and 38 signing tasks. Earlier measurements suggested savings of several seconds per switch. These are small samples, and machine load and build preparation varied, so I would not promise a fixed speedup.&lt;/p&gt;
+&lt;p&gt;That was enough for me to remove the &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt; override from both Codex and OpenCode. We kept the shared build locations and cache settings. Switching can still trigger linking and downstream signing, but our unchanged builds reuse the compiled code. Repeated builds within the same environment skip the relinking too.&lt;/p&gt;
+&lt;p&gt;I would start with that setup. Measure the remaining delay before copying Xcode’s environment, especially if your project has scripts that find tools through &lt;code class=&quot;language-text&quot;&gt;PATH&lt;/code&gt;. For our workflow, I am happy to accept a few seconds of relinking and leave the client’s environment alone.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Refactor by Numbers]]></title><description><![CDATA[Your coding agent just rewrote a module. It reports the result is cleaner, safer and easier to reason about. Do you believe it? Mine told me…]]></description><link>https://sergdort.github.io/refactor-by-numbers/</link><guid isPermaLink="false">https://sergdort.github.io/refactor-by-numbers/</guid><pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
